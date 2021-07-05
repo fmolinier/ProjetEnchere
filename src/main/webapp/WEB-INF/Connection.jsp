@@ -12,7 +12,7 @@
 			<input type="text" id="identifiant" autofocus="autofocus">
 			<label for="motdepasse">Identifiant</label>
 			<input type="password" id="motdepasse">
-			<button>Connexion</button>
+			<input type="submit" name="connection">
 		</form>
 		<a href="Inscription.jsp" ><button>Inscription</button></a>
 	</body>

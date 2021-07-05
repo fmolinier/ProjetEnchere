@@ -28,6 +28,7 @@
 			<input type="password" id="motdepasse">
 			<label for="confirmation">Confirmation</label>
 			<input type="password" id="confirmation">
+			<input type ="submit" name="creer">
 		</form>
 	</body>
 </html>
