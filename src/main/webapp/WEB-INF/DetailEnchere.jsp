@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -7,6 +6,6 @@
 		<title>Detail</title>
 	</head>
 	<body>
-
+		<h1>Detail vente</h1>
 	</body>
 </html>

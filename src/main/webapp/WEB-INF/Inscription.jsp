@@ -28,7 +28,8 @@
 			<input type="password" id="motdepasse">
 			<label for="confirmation">Confirmation</label>
 			<input type="password" id="confirmation">
-			<input type ="submit" name="creer">
+			<input type ="submit" value="Enregister">
 		</form>
+		<a href="Accueil.jsp"><button>Anuller</button></a>
 	</body>
 </html>
