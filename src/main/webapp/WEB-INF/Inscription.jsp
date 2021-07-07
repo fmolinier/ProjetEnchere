@@ -7,7 +7,7 @@
 		<title>Inscription</title>
 	</head>
 	<body>
-		<form name="inscription" action="" method="post">
+		<form name="inscription" action="<%=request.getContextPath()%>/inscription" method="post">
 			<label for="pseudo">Pseudo</label>
 			<input type="text" id="pseudo">
 			<label for="nom">Nom</label>

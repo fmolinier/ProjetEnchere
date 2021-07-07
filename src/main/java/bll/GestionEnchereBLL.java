@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import bo.Article;
+import bo.Enchere;
 import bo.Retrait;
 import dal.DAOFactory;
 import dal.GestionEnchereDAO;
@@ -30,20 +31,12 @@ public class GestionEnchereBLL {
 	}
 
 	// Ajout d'un nouvel article en vente
-	public Article ajouterArticle(String nomArticle, String description, int miseAPrix, Date dateDebut, Date dateFin,
-			String pseudo, String libelle, String rueRetrait, int codePostalRetrait, String villeRetrait) {
+	public Article ajouterArticle(Article nouvelleEnchere, String pseudo,String libelle) {
 
 		Article article = null;
 		LocalDate jour = LocalDate.now();
-		LocalDate debut = convertToLocalDateViaInstant(dateDebut);
-		LocalDate fin = convertToLocalDateViaInstant(dateFin);
-
-		article = new Article();
-		article.setNomArticle(nomArticle);
-		article.setDescription(description);
-		article.setMiseAPrix(miseAPrix);
-		article.setDateDebut(dateDebut);
-		article.setDateFin(dateFin);
+		LocalDate debut = convertToLocalDateViaInstant(nouvelleEnchere.getDateDebut());
+		LocalDate fin = convertToLocalDateViaInstant(nouvelleEnchere.getDateFin());
 
 		if (debut.isBefore(fin)) {
 			if (debut.isAfter(jour)) {
@@ -51,11 +44,11 @@ public class GestionEnchereBLL {
 			} else if (debut.isEqual(jour)) {
 				article.setEtatVente("en cours");
 			}
-		}
+		}//TODO a refaire
 
 		try {
-			int noArticle = this.gestionEnchereDAO.insertArticle(article, pseudo, libelle);
-			ajouterRetrait(rueRetrait, codePostalRetrait, villeRetrait, noArticle);
+			int noArticle = this.gestionEnchereDAO.insertArticle(nouvelleEnchere, pseudo, libelle);
+			ajouterRetrait(nouvelleEnchere.getRetrait().getRueRetrait(), nouvelleEnchere.getRetrait().getCodePostalRetrait(),nouvelleEnchere.getRetrait().getVilleRetrait(), noArticle);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

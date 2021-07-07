@@ -2,6 +2,7 @@ package Servlet;
 
 import java.io.IOException;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -9,8 +10,9 @@ import jakarta.servlet.RequestDispatcher;
 import bll.GestionUtilisateurBLL;
 import bo.Utilisateur;
 
+@WebServlet("/inscription")
 public class ServletInscription extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -7765659313742692757L;
 
 	/**
 	 * Default constructor.

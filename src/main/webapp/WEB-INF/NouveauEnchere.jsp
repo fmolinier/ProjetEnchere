@@ -8,7 +8,7 @@
 	</head>
 	<body>
 		<h1>Nouvelle Enchere</h1>
-		<form action="">
+		<form action="<%=request.getContextPath()%>/NouvelleEnchere" method="post">
 			<label for="nom">nom</label> <input id="nom" type="text"> <label
 				for="description">description</label>
 			<textarea id="description" rows="5" cols="33"></textarea>

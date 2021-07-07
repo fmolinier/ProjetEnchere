@@ -6,8 +6,8 @@
 		<meta charset="ISO-8859-1">
 		<title>Profil</title>
 	</head>
-	<body>
-		<form name="profil" action="" method="post">
+	<body><!-- TODO  autre profil-->
+		<form name="profil" action="<%=request.getContextPath()%>/MonProfil" method="post">
 			<label for="pseudo">Pseudo</label>
 			<input type="text" id="pseudo" autofocus="autofocus">
 			<label for="nom">Nom</label>
@@ -24,6 +24,11 @@
 			<input type="text" id="codepostal">
 			<label for="ville">Ville</label>
 			<input type="text" id="ville">
+			<label for="motdepasse">Mot de passe</label>
+			<input type="password" id="motdepasse">
+			<label for="confirmation">Confirmation</label>
+			<input type="password" id="confirmation">
+			<input type ="submit" value="Enregister">
 		</form>
 	</body>
 </html>

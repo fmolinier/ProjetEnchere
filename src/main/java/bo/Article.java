@@ -10,6 +10,7 @@ public class Article {
 	private Date dateDebut, dateFin;
 	private Categorie categorie;
 	private Utilisateur acheteur, vendeur;
+	private Retrait retrait;
 
 	// Constructeur
 	public Article(int noArticle, String nomArticle, String description, Date dateDebut, Date dateFin, int miseAPrix,
@@ -138,6 +139,14 @@ public class Article {
 				+ ", nomArticle=" + nomArticle + ", description=" + description + ", etatVente=" + etatVente
 				+ ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", categorie=" + categorie + ", acheteur="
 				+ acheteur + ", vendeur=" + vendeur + "]";
+	}
+
+	public Retrait getRetrait() {
+		return retrait;
+	}
+
+	public void setRetrait(Retrait retrait) {
+		this.retrait = retrait;
 	}
 
 }
