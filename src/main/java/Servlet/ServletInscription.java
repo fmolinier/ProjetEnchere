@@ -47,14 +47,14 @@ public class ServletInscription extends HttpServlet {
 		u.setEmail(request.getParameter("email"));
 		u.setTelephone(request.getParameter("telephone"));
 		u.setRue(request.getParameter("rue"));
-		u.setCodePostal(Integer.parseInt(request.getParameter("codePostal")));
+		u.setCodePostal(Integer.parseInt(request.getParameter("codepostal")));
 		u.setVille(request.getParameter("ville"));
 
 		// on verifie que le nouveau mot de passe correspond a la confirmation du
 		// nouveau mot de passe
-		if (request.getParameter("MotDePasse").equals((request.getParameter("confirmerMotDePasse")))) {
+		if (request.getParameter("MotDePasse").equals((request.getParameter("confirmation")))) {
 			b.InscriptionUtilisateur(u);
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/seconnecter.html");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Connection.jsp");
 			rd.forward(request, response);
 		} else {
 			System.out.println("la confirmation du mot de passe est incorrecte");

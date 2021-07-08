@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import bo.Article;
-import bo.Enchere;
 import bo.Retrait;
 import dal.DAOFactory;
 import dal.GestionEnchereDAO;
@@ -40,9 +39,9 @@ public class GestionEnchereBLL {
 
 		if (debut.isBefore(fin)) {
 			if (debut.isAfter(jour)) {
-				article.setEtatVente("non debuté");
+				nouvelleEnchere.setEtatVente("non debuté");
 			} else if (debut.isEqual(jour)) {
-				article.setEtatVente("en cours");
+				nouvelleEnchere.setEtatVente("en cours");
 			}
 		}//TODO a refaire
 
