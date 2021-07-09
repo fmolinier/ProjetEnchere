@@ -8,6 +8,7 @@ import java.util.Date;
 import bll.GestionEnchereBLL;
 import bo.Article;
 import bo.Retrait;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -64,7 +65,11 @@ public class ServletNouvelleEnchere extends HttpServlet {
 		r.setCodePostalRetrait(Integer.parseInt(request.getParameter("codepostal")));
 		r.setVilleRetrait(request.getParameter("ville"));
 		a.setRetrait(r);
+		
 		e.ajouterArticle(a, request.getParameter("categorie"), getServletInfo());
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/DetailEnchere.jsp");
+		rd.forward(request, response);
 
 	}
 
