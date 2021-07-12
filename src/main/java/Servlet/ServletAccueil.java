@@ -3,7 +3,6 @@ package Servlet;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import bll.ListeEnchereBLL;
 import bo.Article;
 import jakarta.servlet.RequestDispatcher;
@@ -23,23 +22,32 @@ public class ServletAccueil extends HttpServlet {
 	public ServletAccueil() {
 		super();
 	}
-	    
-    /**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request,response);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doPost(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		// TODO session  / cookie
+		
 		ListeEnchereBLL b = new ListeEnchereBLL();
 		List<Article> liste = new ArrayList<Article>();
 		liste = b.listeEnchere();
+		
+		//
+		request.setAttribute("listesCourse", liste);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Acceuil.html");
 		rd.forward(request, response);
-		}	
+		
+	}
 }
