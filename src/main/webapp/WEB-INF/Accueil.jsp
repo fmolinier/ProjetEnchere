@@ -5,6 +5,7 @@
 	<head>
 		<meta charset="ISO-8859-1"> 
 		<title>Accueil</title>
+		<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	</head>
 	<body>
 		<%@ include file="./fragments/header.html" %>
@@ -21,9 +22,23 @@
 				<input type="submit" Value="Rechercher">
 			</form>
 			<c:forEach var="c" items="${liste}">
-				<div>
-					<label>${c.nomArticle}</label>
-				</div>
+				<form action="<%=request.getContextPath()%>/detail" method="get">
+					<div><!-- TODO bordure div -->
+						<p id="nom">${c.nomArticle}</p>
+						<label for="prix">Prix : </label>
+						<c:if test="${!empty c.montantEnchere }">
+							<p id="prix">${c.montantEnchere}</p>
+						</c:if>
+						<c:if test="empty c.montantEnchere">
+							<p id="prix">${c.miseAPrix}</p>
+						</c:if>
+						<label for="fin">Fin de l'enchére : </label>
+						<p id="fin">${c.dateFin}</p>
+						<label for="vender">Vendeur : </label>
+						<p id="vender">${c.pseudo}</p>
+						<input type="submit" Value="Detail">
+					</div>
+				</form>
 			</c:forEach>
 		</main>
 	</body>

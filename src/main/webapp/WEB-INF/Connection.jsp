@@ -5,6 +5,7 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Insert title here</title>
+		<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	</head>
 	<body><!-- ${pageContext.request.contextPath} -->
 		<form action="<%=request.getContextPath()%>/connection" method="post">

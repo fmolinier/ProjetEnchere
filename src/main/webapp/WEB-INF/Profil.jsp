@@ -5,6 +5,7 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Profil</title>
+		<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	</head>
 	<body><!-- TODO  autre profil-->
 		<form name="profil" action="<%=request.getContextPath()%>/MonProfil" method="post">
