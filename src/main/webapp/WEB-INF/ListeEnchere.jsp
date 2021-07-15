@@ -22,31 +22,31 @@
 				<div>
 					<p>Achats</p>
 					<div>
-					  <input type="radio" id="huey" name="drone" value="huey" checked>
-					  <label for="huey">Huey</label>
+					  <input type="radio" name="AchatsVente" value="ouvertes" checked>
+					  <label for="ouvertes">enchères ouvertes</label>
 					</div>
 					<div>
-					  <input type="radio" id="dewey" name="drone" value="dewey">
-					  <label for="dewey">Dewey</label>
+					  <input type="radio" name="AchatsVente" value="enchereencours">
+					  <label for="enchereencours">mes enchères en cours</label>
 					</div>
 					<div>
-					  <input type="radio" id="louie" name="drone" value="louie">
-					  <label for="louie">Louie</label>
+					  <input type="radio" name="AchatsVente" value="remporter">
+					  <label for="remporter">mes enchères remportées</label>
 					</div>
 				</div>
 				<div>
 					<p>Mes ventes</p>
 					<div>
-					  <input type="radio" id="huey" name="drone" value="huey" checked>
-					  <label for="huey">Huey</label>
+					  <input type="radio" name="AchatsVente" value="ventesencours">
+					  <label for="ventesencours">mes ventes en cours</label>
 					</div>
 					<div>
-					  <input type="radio" id="dewey" name="drone" value="dewey">
-					  <label for="dewey">Dewey</label>
+					  <input type="radio" name="AchatsVente" value="débuter">
+					  <label for="débuter">ventes non débutées</label>
 					</div>
 					<div>
-					  <input type="radio" id="louie" name="drone" value="louie">
-					  <label for="louie">Louie</label>
+					  <input type="radio" name="AchatsVente" value="terminer">
+					  <label for="terminer">ventes terminèes</label>
 					</div>
 				</div>
 				<input type="submit" Value="Rechercher">
@@ -59,7 +59,7 @@
 						<c:if test="${!empty c.montantEnchere }">
 							<p id="prix">${c.montantEnchere}</p>
 						</c:if>
-						<c:if test="empty c.montantEnchere">
+						<c:if test="${empty c.montantEnchere}">
 							<p id="prix">${c.miseAPrix}</p>
 						</c:if>
 						<label for="fin">Fin de l'enchére : </label>

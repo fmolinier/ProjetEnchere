@@ -44,7 +44,7 @@ public class ServletAccueil extends HttpServlet {
 		liste = b.listeEnchere();
 		
 		//
-		request.setAttribute("listesCourse", liste);
+		request.setAttribute("liste", liste);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Acceuil.html");
 		rd.forward(request, response);
 		
