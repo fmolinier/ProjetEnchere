@@ -52,20 +52,20 @@
 				<input type="submit" Value="Rechercher">
 			</form>
 			<c:forEach var="c" items="${liste}">
-				<form action="<%=request.getContextPath()%>/detail" method="get">
+				<form action="<%=request.getContextPath()%>/detail" method="post">
 					<div><!-- TODO bordure div -->
 						<p id="nom">${c.nomArticle}</p>
 						<label for="prix">Prix : </label>
 						<c:if test="${!empty c.montantEnchere }">
-							<p id="prix">${c.montantEnchere}</p>
+							<label id="prix">${c.montantEnchere}</label>
 						</c:if>
 						<c:if test="${empty c.montantEnchere}">
-							<p id="prix">${c.miseAPrix}</p>
+							<label id="prix">${c.miseAPrix}</label>
 						</c:if>
 						<label for="fin">Fin de l'enchére : </label>
-						<p id="fin">${c.dateFin}</p>
+						<label id="fin">${c.dateFin}</label>
 						<label for="vender">Vendeur : </label>
-						<p id="vender">${c.pseudo}</p>
+						<label id="vender">${c.pseudo}</label>
 						<input type="submit" Value="Detail">
 					</div>
 				</form>

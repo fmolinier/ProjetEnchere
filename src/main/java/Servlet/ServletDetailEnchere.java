@@ -1,6 +1,8 @@
 package Servlet;
 
 import java.io.IOException;
+
+import bll.GestionEnchereBLL;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -33,6 +35,7 @@ public class ServletDetailEnchere extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO detail
+		GestionEnchereBLL e = new GestionEnchereBLL();
 	}
 
 }
