@@ -9,14 +9,15 @@
 	</head>
 	<body>
 		<h1>Detail vente</h1>
-		<h3>${nomArticle}</h3>
-		<form action="<%=request.getContextPath()%>/detail" method="get">
+		<h3 id="nomArticle">${nomArticle}</h3>
+		<form action="<%=request.getContextPath()%>/Encherir" method="post">
 			<label for="description">Description : </label>
 			<textarea id="description" disabled>>${description}</textarea>
 			<label for="categorie">Categorie : </label>
 			<label id="categorie">${categorie}</label>
 			<label for="enchere">Meilleure offre : </label>
 			<label id="enchere">${enchere}</label>
+			<label id="pseudoenchere"> par ${pseudoenchere}</label>
 			<label for="prix">Mise à prix : </label>
 			<label id="prix">${prix}</label>
 			<label for="fin">Fin de l'enchère : </label>

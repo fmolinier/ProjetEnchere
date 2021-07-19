@@ -36,7 +36,7 @@ public class ServletListeEnchere extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		ListeEnchereBLL b = new ListeEnchereBLL();
-		List<Article> liste = new ArrayList<Article>();
+		List<Article> liste = new ArrayList<Article>();//TODO a modifier
 		String pseudo = session.getAttribute("pseudo").toString();
 		if (pseudo == null) {
 			if (request.getParameter("categorie").equals("tous") && request.getParameter("recherche").equals(null)) {

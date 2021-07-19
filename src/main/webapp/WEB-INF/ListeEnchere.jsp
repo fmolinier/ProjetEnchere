@@ -53,7 +53,8 @@
 			</form>
 			<c:forEach var="c" items="${liste}">
 				<form action="<%=request.getContextPath()%>/detail" method="post">
-					<div><!-- TODO bordure div -->
+					<div class="border border-info">
+						<input id="numero" name="numero" type="hidden" value="${c.numeroArticle}">
 						<p id="nom">${c.nomArticle}</p>
 						<label for="prix">Prix : </label>
 						<c:if test="${!empty c.montantEnchere }">

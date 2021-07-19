@@ -43,7 +43,7 @@ public class GestionEnchereBLL {
 			} else if (debut.isEqual(jour)) {
 				nouvelleEnchere.setEtatVente("en cours");
 			}
-		}//TODO a refaire?
+		}
 
 		try {
 			int noArticle = this.gestionEnchereDAO.insertArticle(nouvelleEnchere, pseudo, libelle);

@@ -3,6 +3,7 @@ package Servlet;
 import java.io.IOException;
 
 import bll.GestionEnchereBLL;
+import bo.Article;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -34,8 +35,18 @@ public class ServletDetailEnchere extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO detail
 		GestionEnchereBLL e = new GestionEnchereBLL();
+		Article a = new Article();
+		a = e.detailArticle(Integer.parseInt(request.getParameter("numero")));
+		request.setAttribute("nomArticle",a.getNomArticle());
+		request.setAttribute("description", a.getDescription());
+		request.setAttribute("categorie", a.getCategorie().getLibelle());
+		request.setAttribute("enchere", a.getEnchere().getMontantEnchere());
+		request.setAttribute("pseudoenchere", a.getEnchere().getEnchereur().getPseudo());
+		request.setAttribute("prix", a.getMiseAPrix());
+		request.setAttribute("fin", a.getDateFin());
+		request.setAttribute("retrait", a.getRetrait());
+		request.setAttribute("vendeur", a.getVendeur().getPseudo());
 	}
 
 }

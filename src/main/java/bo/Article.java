@@ -11,6 +11,7 @@ public class Article {
 	private Categorie categorie;
 	private Utilisateur acheteur, vendeur;
 	private Retrait retrait;
+	private Enchere enchere;//TODO lIST
 
 	// Constructeur
 	public Article(int noArticle, String nomArticle, String description, Date dateDebut, Date dateFin, int miseAPrix,
@@ -147,6 +148,14 @@ public class Article {
 
 	public void setRetrait(Retrait retrait) {
 		this.retrait = retrait;
+	}
+
+	public Enchere getEnchere() {
+		return enchere;
+	}
+
+	public void setEnchere(Enchere enchere) {
+		this.enchere = enchere;
 	}
 
 }

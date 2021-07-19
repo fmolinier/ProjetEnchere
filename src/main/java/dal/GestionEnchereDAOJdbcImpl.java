@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import bo.Article;
 import bo.Categorie;
+import bo.Enchere;
 import bo.Retrait;
 import bo.Utilisateur;
 import connectionBDD.JdbcTools;
@@ -30,6 +31,7 @@ public class GestionEnchereDAOJdbcImpl implements GestionEnchereDAO {
 		Article a = new Article();
 		Categorie c = new Categorie();
 		Utilisateur u = new Utilisateur();
+		Enchere e = new Enchere();
 		// connection à la BDD
 		Connection uneConnectionUtilisateur = JdbcTools.getConnection();
 
@@ -51,13 +53,16 @@ public class GestionEnchereDAOJdbcImpl implements GestionEnchereDAO {
 		u = pseudoUtilisateur(rs.getInt("no_acheteur"));
 		a.setAcheteur(u);
 		a.setEtatVente(rs.getString("etat_vente"));
-		
+		e = meillereEnchere(rs.getInt("no_article"));
+		a.setEnchere(e);
 		// Fermeture de la connexion
 		uneConnectionUtilisateur.close();
 
 		return a;
 	}
-
+	private Enchere meillereEnchere(int numeroArticle) {
+		return null;
+	}
 	// recherche une categorie avec son numero categorie
 	private Categorie libelleCategorie(int noCategorie) throws SQLException {
 		
