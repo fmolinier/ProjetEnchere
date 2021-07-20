@@ -10,7 +10,7 @@
 	<body>
 		<%@ include file="./fragments/header.html" %>
 		<main>
-			<form action="<%=request.getContextPath()%>/recherche" method="get">
+			<form action="<%=request.getContextPath()%>/liste" method="get">
 				<input type="search" id="recherche">
 				<select id="categorie">
 					<option value="tous">Toutes</option>

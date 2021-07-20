@@ -50,7 +50,7 @@ public class ServletConnection extends HttpServlet {
 			session.setAttribute("pseudo", u.getPseudo());
 			session.setAttribute("email", u.getEmail());
 
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Acceuil.html");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/ListeEncher.html");//TODO A tester
 			rd.forward(request, response);
 		}
 	}

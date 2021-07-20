@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import bll.GestionEnchereBLL;
 import bo.Article;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -21,7 +22,7 @@ public class ServletDetailEnchere extends HttpServlet {
      * Default constructor. 
      */
     public ServletDetailEnchere() {
-        // TODO Auto-generated constructor stub
+        super();
     }
 
 	/**
@@ -47,6 +48,8 @@ public class ServletDetailEnchere extends HttpServlet {
 		request.setAttribute("fin", a.getDateFin());
 		request.setAttribute("retrait", a.getRetrait());
 		request.setAttribute("vendeur", a.getVendeur().getPseudo());
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/DetailEnchere.jsp");//TODO a tester
+		rd.forward(request, response);
 	}
 
 }

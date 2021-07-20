@@ -11,7 +11,7 @@ public class Article {
 	private Categorie categorie;
 	private Utilisateur acheteur, vendeur;
 	private Retrait retrait;
-	private Enchere enchere;//TODO lIST
+	private Enchere enchere;
 
 	// Constructeur
 	public Article(int noArticle, String nomArticle, String description, Date dateDebut, Date dateFin, int miseAPrix,

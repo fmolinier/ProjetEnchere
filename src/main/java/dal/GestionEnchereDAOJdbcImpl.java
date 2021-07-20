@@ -23,7 +23,9 @@ public class GestionEnchereDAOJdbcImpl implements GestionEnchereDAO {
 	private static final String SELECT_PseudoUtilisateur = "SELECT no_utilisateur,pseudo FROM UTILISATEUR WHERE no_utilisateur = ?";
 	private static final String DELETE_Enchere = "DELETE FROM ARTICLE_VENDU WHERE no_Article = ?";
 	private static final String UPDATE_Enchere = "UPDATE ARTICLE_VENDU SET nom_article = ?, description = ?,date_debut_encheres = ?,date_fin_encheres = ?,mise_a_prix = ?,no_categorie = ? WHERE no_Article = ?";
-
+	private static final String Montant_Max_Enchere = "SELECT montant_enchere,no_utilisateur FROM ENCHERE where no_article = ? ORDER BY montant_enchere DESC"
+			+ ""
+			+ "";
 
 	@Override
 	public Article Detail(int noArticles) throws SQLException {
@@ -60,18 +62,37 @@ public class GestionEnchereDAOJdbcImpl implements GestionEnchereDAO {
 
 		return a;
 	}
-	private Enchere meillereEnchere(int numeroArticle) {
-		return null;
+
+	private Enchere meillereEnchere(int numeroArticle) throws SQLException {
+		ResultSet rs = null;
+		Enchere e = new Enchere();
+		Utilisateur u = new Utilisateur();
+
+		// connection à la BDD
+		Connection uneConnectionUtilisateur = JdbcTools.getConnection();
+
+		// Requête à la BDD
+		PreparedStatement pstmt = uneConnectionUtilisateur.prepareStatement(Montant_Max_Enchere);
+		pstmt.setInt(1, numeroArticle);
+		
+		rs = pstmt.executeQuery();
+		rs.next();
+		e.setMontantEnchere(rs.getInt("montant_enchere"));
+		u = pseudoUtilisateur(rs.getInt("no_utilisateur"));
+		e.setEnchereur(u);
+
+		return e;
 	}
+
 	// recherche une categorie avec son numero categorie
 	private Categorie libelleCategorie(int noCategorie) throws SQLException {
-		
+
 		ResultSet rs = null;
 		Categorie c = new Categorie();
 
 		// connection à la BDD
 		Connection uneConnectionCategorie = JdbcTools.getConnection();
-		
+
 		// Requête à la BDD
 		PreparedStatement pstmt = uneConnectionCategorie.prepareStatement(SELECT_libelleCategorie);
 		pstmt.setInt(1, noCategorie);
@@ -85,7 +106,7 @@ public class GestionEnchereDAOJdbcImpl implements GestionEnchereDAO {
 
 		return c;
 	}
-	
+
 	// recherche un utilisateur avec son numero utilisateur
 	private Utilisateur pseudoUtilisateur(int noUtilisateur) throws SQLException {
 		ResultSet rs = null;
@@ -100,12 +121,13 @@ public class GestionEnchereDAOJdbcImpl implements GestionEnchereDAO {
 		rs.next();
 		u.setNoUtilisateur(rs.getInt("no_utilisateur"));
 		u.setPseudo(rs.getString("pseudo"));
-		
+
 		// Fermeture de la connexion
 		uneConnectionUtilisateur.close();
 
 		return u;
 	}
+
 	@Override
 	public int insertArticle(Article article, String pseudo, String libelle) throws SQLException {
 
@@ -114,14 +136,15 @@ public class GestionEnchereDAOJdbcImpl implements GestionEnchereDAO {
 		Connection uneConnection = JdbcTools.getConnection();
 
 		// Requête à la BDD
-		PreparedStatement pstmt = uneConnection.prepareStatement(sqlInsertArticle,PreparedStatement.RETURN_GENERATED_KEYS);
+		PreparedStatement pstmt = uneConnection.prepareStatement(sqlInsertArticle,
+				PreparedStatement.RETURN_GENERATED_KEYS);
 
 		// Valorisation des paramètres de la requete
 		pstmt.setString(1, article.getNomArticle());
 		pstmt.setString(2, article.getDescription());
 		pstmt.setInt(3, article.getMiseAPrix());
-		pstmt.setDate(4,(Date) article.getDateDebut());
-		pstmt.setDate(5,(Date) article.getDateFin());
+		pstmt.setDate(4, (Date) article.getDateDebut());
+		pstmt.setDate(5, (Date) article.getDateFin());
 		pstmt.setString(6, article.getEtatVente());
 		pstmt.setInt(7, noUtilisateur(pseudo));
 		pstmt.setInt(8, noCategorie(libelle));
@@ -141,14 +164,14 @@ public class GestionEnchereDAOJdbcImpl implements GestionEnchereDAO {
 		int num = 0;
 		// connection à la BDD
 		Connection uneConnectionUtilisateur = JdbcTools.getConnection();
-		
+
 		// Requête à la BDD
 		PreparedStatement pstmt = uneConnectionUtilisateur.prepareStatement(sqlSelectNoUtilisateur);
 		pstmt.setString(1, pseudo);
 		rs = pstmt.executeQuery();
 		rs.next();
 		num = rs.getInt("no_utilisateur");
-		
+
 		// Fermeture de la connexion
 		uneConnectionUtilisateur.close();
 
@@ -201,15 +224,15 @@ public class GestionEnchereDAOJdbcImpl implements GestionEnchereDAO {
 
 	}
 
-	//retrait ?
+	// retrait ?
 	@Override
 	public Article modifierArticles(Article article) throws SQLException {
 		// Connection à la BDD
 		Connection uneConnection = JdbcTools.getConnection();
-		
+
 		// Requête à la BDD
 		PreparedStatement pstmt = uneConnection.prepareStatement(UPDATE_Enchere);
-		
+
 		// Valorisation des paramètres de la requete
 		pstmt.setString(1, article.getNomArticle());
 		pstmt.setString(2, article.getDescription());
@@ -219,17 +242,17 @@ public class GestionEnchereDAOJdbcImpl implements GestionEnchereDAO {
 		pstmt.setInt(6, noCategorie(article.getCategorie().getLibelle()));
 		pstmt.setInt(7, article.getNoArticle());
 		pstmt.executeUpdate();
-		
+
 		return article;
 	}
 
-	//delete on cascade
+	// delete on cascade
 	@Override
 	public void anulerArticles(int noArticle) throws SQLException {
 		// Connection à la BDD
-		Connection uneConnection = JdbcTools.getConnection();	
+		Connection uneConnection = JdbcTools.getConnection();
 		PreparedStatement pstmt = uneConnection.prepareStatement(DELETE_Enchere);
-		
+
 		// Valorisation des paramètres de la requete
 		pstmt.setInt(1, noArticle);
 		pstmt.executeUpdate();

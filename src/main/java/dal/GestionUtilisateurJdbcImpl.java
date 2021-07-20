@@ -106,8 +106,7 @@ public class GestionUtilisateurJdbcImpl implements GestionUtilisateur{
 		}else if(type == "email") {
 			
 			PreparedStatement pstmt = uneConnection.prepareStatement(SELECT_ConnectionEmail);
-			//TODO TEMPORAIRE : pstmt.setString(1,connection.getEmail());
-			pstmt.setString(1,connection.getPseudo());
+			pstmt.setString(1,connection.getEmail());
 			rs = pstmt.executeQuery();
 			
 			//Recuperation des données recupérer
