@@ -37,7 +37,7 @@ public class GestionUtilisateurBLL {
 
 		// recuperation de l'utilisateur
 		try {
-			utilisateur = gestionUtilisateur.connection(connection, type);
+			utilisateur = gestionUtilisateur.connection(connection, type,motDePasse);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

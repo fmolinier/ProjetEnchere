@@ -11,6 +11,7 @@
 		<h1>Detail vente</h1>
 		<h3 id="nomArticle">${nomArticle}</h3>
 		<form action="<%=request.getContextPath()%>/Encherir" method="post">
+			<input id="numero" name="numero" type="hidden" value="${numeroArticle}">
 			<label for="description">Description : </label>
 			<textarea id="description" disabled>>${description}</textarea>
 			<label for="categorie">Categorie : </label>

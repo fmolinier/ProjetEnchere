@@ -39,8 +39,7 @@ public class ServletConnection extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		GestionUtilisateurBLL b = new GestionUtilisateurBLL();
 		Utilisateur u = new Utilisateur();
@@ -49,7 +48,7 @@ public class ServletConnection extends HttpServlet {
 		if (u.getPseudo() != null && u.getEmail() != null) {
 			session.setAttribute("pseudo", u.getPseudo());
 			session.setAttribute("email", u.getEmail());
-
+			session.setAttribute("numeroUtilisateur", u.getNoUtilisateur());
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/ListeEncher.html");//TODO A tester
 			rd.forward(request, response);
 		}

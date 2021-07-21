@@ -38,12 +38,9 @@ public class ServletAccueil extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO session  / cookie
-		
 		ListeEnchereBLL b = new ListeEnchereBLL();
 		List<Article> liste = new ArrayList<Article>();
 		liste = b.listeEnchere();
-		
-		//
 		request.setAttribute("liste", liste);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Acceuil.html");
 		rd.forward(request, response);

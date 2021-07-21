@@ -10,8 +10,8 @@ import connectionBDD.JdbcTools;
 
 public class GestionUtilisateurJdbcImpl implements GestionUtilisateur{
    
-	private static final String SELECT_ConnectionPseudo = "SELECT pseudo,mot_de_passe,email FROM UTILISATEUR WHERE pseudo = ?";
-	private static final String SELECT_ConnectionEmail = "SELECT email,mot_de_passe,pseudo FROM UTILISATEUR WHERE email = ?";
+	private static final String SELECT_ConnectionPseudo = "SELECT no_utilisateur,pseudo,mot_de_passe,email FROM UTILISATEUR WHERE pseudo = ? and mot_de_passe = ? ";
+	private static final String SELECT_ConnectionEmail = "SELECT no_utilisateur,email,mot_de_passe,pseudo FROM UTILISATEUR WHERE email = ? and mot_de_passe = ?";
 	private static final String SELECT_VerifPseudo=" SELECT pseudo FROM UTILISATEUR WHERE pseudo = ?";
 	private static final String SELECT_VerifEmail=" SELECT email FROM UTILISATEUR WHERE email = ?";
     private static final String INSERT_Instricption=" INSERT INTO UTILISATEUR (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit) VALUES (?,?,?,?,?,?,?,?,?,?)";
@@ -82,9 +82,9 @@ public class GestionUtilisateurJdbcImpl implements GestionUtilisateur{
 		uneConnection.close();
 
 	}
-	
+	//TODO A ameliorer
 	@Override
-	public Utilisateur connection(Utilisateur connection,String type) throws SQLException {
+	public Utilisateur connection(Utilisateur connection,String type,String motdepasse) throws SQLException {
 		Connection uneConnection = null;
 		ResultSet rs = null;
 		Utilisateur Utilisateur = new Utilisateur();
@@ -96,10 +96,12 @@ public class GestionUtilisateurJdbcImpl implements GestionUtilisateur{
 			
 			PreparedStatement pstmt = uneConnection.prepareStatement(SELECT_ConnectionPseudo);
 			pstmt.setString(1,connection.getPseudo());
+			pstmt.setString(2,motdepasse);
 			rs = pstmt.executeQuery();
 			
 			//Recuperation des données recupérer
 			rs.next();
+			Utilisateur.setNoUtilisateur(Integer.parseInt("no_utilisateur"));
 			Utilisateur.setPseudo(rs.getString("pseudo"));
 			Utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
 			
@@ -107,10 +109,12 @@ public class GestionUtilisateurJdbcImpl implements GestionUtilisateur{
 			
 			PreparedStatement pstmt = uneConnection.prepareStatement(SELECT_ConnectionEmail);
 			pstmt.setString(1,connection.getEmail());
+			pstmt.setString(2,motdepasse);
 			rs = pstmt.executeQuery();
 			
 			//Recuperation des données recupérer
 			rs.next();
+			Utilisateur.setNoUtilisateur(Integer.parseInt("no_utilisateur"));
 			Utilisateur.setEmail(rs.getString("email"));
 			Utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
 		}

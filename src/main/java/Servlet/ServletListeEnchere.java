@@ -24,23 +24,19 @@ public class ServletListeEnchere extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	//TODO 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		HttpSession session = request.getSession();
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();//TODO session
 		ListeEnchereBLL b = new ListeEnchereBLL();
-		List<Article> liste = new ArrayList<Article>();// TODO a modifier /recherche
+		List<Article> liste = new ArrayList<Article>();
 		String pseudo = session.getAttribute("pseudo").toString();
 
 
@@ -78,6 +74,7 @@ public class ServletListeEnchere extends HttpServlet {
 
 			liste = b.listeEnchere();
 		}
+		request.setAttribute("liste", liste);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Acceuil.jsp");// ?????
 		rd.forward(request, response);
 
