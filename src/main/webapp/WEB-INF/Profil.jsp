@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -8,7 +8,7 @@
 		<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	</head>
 	<body><!-- TODO  autre profil-->
-		<form name="profil" action="<%=request.getContextPath()%>/MonProfil" method="post">
+		<form name="profil" action="<%=request.getContextPath()%>/modifier" method="post">
 			<label for="pseudo">Pseudo</label>
 			<input type="text" id="pseudo" autofocus="autofocus">
 			<label for="nom">Nom</label>
@@ -30,6 +30,9 @@
 			<label for="confirmation">Confirmation</label>
 			<input type="password" id="confirmation">
 			<input type ="submit" value="Enregister">
+		</form>
+		<form name="profil" action="<%=request.getContextPath()%>/supprimer" method="post">
+			<input type ="submit" value="Supprimer">
 		</form>
 	</body>
 </html>

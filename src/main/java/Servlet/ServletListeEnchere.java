@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebServlet("/liste")
+@WebServlet("/recherche")
 public class ServletListeEnchere extends HttpServlet {
 
 	private static final long serialVersionUID = -6264262126743044394L;
@@ -34,12 +34,12 @@ public class ServletListeEnchere extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();//TODO session
+		HttpSession session = request.getSession();
 		ListeEnchereBLL b = new ListeEnchereBLL();
 		List<Article> liste = new ArrayList<Article>();
-		String pseudo = session.getAttribute("pseudo").toString();
+		String pseudo =  (String) session.getAttribute("pseudo");
 
-
+		//TODO a modifier
 		if (request.getParameter("categorie").equals("tous") && request.getParameter("recherche").equals(null)) {
 			liste = b.listeEnchere();
 
@@ -75,6 +75,7 @@ public class ServletListeEnchere extends HttpServlet {
 			liste = b.listeEnchere();
 		}
 		request.setAttribute("liste", liste);
+		request.setAttribute("session", session);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Acceuil.jsp");// ?????
 		rd.forward(request, response);
 

@@ -6,11 +6,18 @@ import bll.GestionUtilisateurBLL;
 import bo.Utilisateur;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+
+@WebServlet(
+		urlPatterns= {
+						"/MonProfil",
+						"/Profil"
+		})
 public class ServletAfficherProfil extends HttpServlet {
 
 	/**
@@ -36,12 +43,12 @@ public class ServletAfficherProfil extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		GestionUtilisateurBLL b = new GestionUtilisateurBLL();
-		HttpSession session = request.getSession();//TODO session
+		HttpSession session = request.getSession();
 		Utilisateur u = new Utilisateur();
 		//si c'est le profil de l'utilisateur
-		if (request.getParameter("pseudo").equals(session.getAttribute("pseudo")) ) {
-			
-			u = b.afficherProfil(request.getParameter("pseudo"));
+		if (request.getServletPath().equals("/MonProfil")) {
+			//TODO lien mon profil dans les jsp
+			u = b.afficherProfil( (String) session.getAttribute("pseudo"));
 			request.setAttribute("pseudo", u.getPseudo());
 			request.setAttribute("nom", u.getNom());
 			request.setAttribute("prenom", u.getPrenom());
@@ -52,10 +59,10 @@ public class ServletAfficherProfil extends HttpServlet {
 			request.setAttribute("ville", u.getVille());
 			request.setAttribute("motDePasse", u.getMotDePasse());
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Profil.html");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Profil.jsp");
 			rd.forward(request, response);
 			//si c'est le profil d'un autre utilisateur
-		}else {
+		}else if (request.getServletPath().equals("/Profil")){
 			
 			u = b.afficherProfil(request.getParameter("pseudo"));
 			request.setAttribute("pseudo", u.getPseudo());
@@ -67,7 +74,7 @@ public class ServletAfficherProfil extends HttpServlet {
 			request.setAttribute("codePostal", u.getCodePostal());
 			request.setAttribute("ville", u.getVille());
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Profil.html");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Profil.jsp");
 			rd.forward(request, response);
 		}
 	}

@@ -67,7 +67,7 @@ public class ServletNouvelleEnchere extends HttpServlet {
 		a.setRetrait(r);
 		
 		e.ajouterArticle(a, request.getParameter("categorie"), getServletInfo());
-		
+		//TODO a tester
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/DetailEnchere.jsp");
 		rd.forward(request, response);
 
