@@ -1,11 +1,5 @@
 package Servlet;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import bll.ListeEnchereBLL;
-import bo.Article;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,6 +7,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import bll.ListeEnchereBLL;
+import bo.Article;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/recherche")
 public class ServletListeEnchere extends HttpServlet {

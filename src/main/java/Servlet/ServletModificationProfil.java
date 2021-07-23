@@ -37,8 +37,7 @@ public class ServletModificationProfil extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
 
 		GestionUtilisateurBLL b = new GestionUtilisateurBLL();
 		Utilisateur u = new Utilisateur();
@@ -87,7 +86,9 @@ public class ServletModificationProfil extends HttpServlet {
 					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Profil.jsp");
 					rd.forward(request, response);
 				} else {
-					System.out.println("la confirmation du mot de passe est incorrecte");
+					request.setAttribute("erreur","la confirmation du mot de passe est incorrecte");
+					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Profil.jsp");
+					rd.forward(request, response);
 				}
 			}
 		} else 	if (request.getServletPath().equals("/suprimer")) {
