@@ -58,12 +58,14 @@
 					<div><!-- TODO bordure div -->
 						<p id="nom">${c.nomArticle}</p>
 						<label for="prix">Prix : </label>
-						<c:if test="${!empty c.montantEnchere }">
-							<p id="prix">${c.montantEnchere}</p>
-						</c:if>
-						<c:if test="empty c.montantEnchere">
-							<p id="prix">${c.miseAPrix}</p>
-						</c:if>
+						<c:choose>
+   							<c:when test="${!empty c.montantEnchere }">
+   								<p id="prix">${c.montantEnchere}</p>
+   							</c:when>
+   							<c:when test="${empty c.montantEnchere}">
+   								<p id="prix">${c.miseAPrix}</p>
+   							</c:when>
+						</c:choose>
 						<label for="fin">Fin de l'enchére : </label>
 						<p id="fin">${c.dateFin}</p>
 						<label for="vender">Vendeur : </label>

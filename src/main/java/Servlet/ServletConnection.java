@@ -14,9 +14,7 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet("/connection")
 public class ServletConnection extends HttpServlet {
 	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 2668221621133906349L;
 
 	/**

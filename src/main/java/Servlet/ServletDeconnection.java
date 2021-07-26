@@ -1,6 +1,7 @@
 package Servlet;
 
 import java.io.IOException;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -27,7 +28,9 @@ public class ServletDeconnection extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		session.invalidate();//TODO Deconection
+		session.invalidate();//TODO a tester
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Acceuil.jsp");// ?????
+		rd.forward(request, response);
  	}
 
 	/**
