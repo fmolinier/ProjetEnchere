@@ -11,7 +11,7 @@
 		<c:if test="${!empty erreur}">
 			<div class="alert alert-danger" role="alert">
 				<strong>Erreur!</strong>
-				<p>${erreur}</>
+				<p>${erreur}</p>
 			</div>
 		</c:if>
 		<c:if test="${empty session}">

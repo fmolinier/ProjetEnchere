@@ -25,16 +25,14 @@ public class ServletConnection extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -46,8 +44,13 @@ public class ServletConnection extends HttpServlet {
 			session.setAttribute("pseudo", u.getPseudo());
 			session.setAttribute("email", u.getEmail());
 			session.setAttribute("numeroUtilisateur", u.getNoUtilisateur());
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/ListeEncher.html");//TODO A tester
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Acceuil.jsp");//TODO A tester
+			rd.forward(request, response);
+		}else {
+			request.setAttribute("alert", "le pseudo / mot de passe est incorrect");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Connection.jsp");//TODO A tester
 			rd.forward(request, response);
 		}
+		//TODO alert ereur
 	}
 }

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -16,5 +16,9 @@
 			<input type="submit" name="connection">
 		</form>
 		<a href="Inscription.jsp" ><button>Inscription</button></a>
+		<c:if test="${alert !empty }">
+			<p class="alert alert-warning" role="alert">${alert}</p>
+		</c:if>
+		
 	</body>
 </html>

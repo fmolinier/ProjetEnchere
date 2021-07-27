@@ -47,7 +47,6 @@ public class ServletAfficherProfil extends HttpServlet {
 		Utilisateur u = new Utilisateur();
 		//si c'est le profil de l'utilisateur
 		if (request.getServletPath().equals("/MonProfil")) {
-			//TODO lien mon profil dans les jsp
 			u = b.afficherProfil( (String) session.getAttribute("pseudo"));
 			request.setAttribute("pseudo", u.getPseudo());
 			request.setAttribute("nom", u.getNom());
