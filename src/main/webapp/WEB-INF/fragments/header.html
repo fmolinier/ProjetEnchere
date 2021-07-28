@@ -3,8 +3,8 @@
 		<c:when test="${empty session }">
 			<div>
 				<img alt="logo" src="">
-				<a href="<%=request.getContextPath()%>/inscription">S'inscrire</a>
-				<a href="<%=request.getContextPath()%>/connection">Se connecter</a>
+				<a href="/Inscription.jsp">S'inscrire</a>
+				<a href="Connection.jsp">Se connecter</a>
 			</div>
 		</c:when>
 		<c:when test="${!empty session}">

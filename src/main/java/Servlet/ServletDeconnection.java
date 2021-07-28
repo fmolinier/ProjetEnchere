@@ -29,7 +29,7 @@ public class ServletDeconnection extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.invalidate();//TODO a tester
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Acceuil.jsp");// ?????
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");// ?????
 		rd.forward(request, response);
  	}
 

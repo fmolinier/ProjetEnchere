@@ -38,7 +38,8 @@ public class ServletDetailEnchere extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		GestionEnchereBLL e = new GestionEnchereBLL();
 		Article a = new Article();
-		a = e.detailArticle(Integer.parseInt(request.getParameter("numero")));
+		int num =Integer.parseInt(request.getParameter("numero"));
+		a = e.detailArticle(num);
 		request.setAttribute("numero",a.getNoArticle());
 		request.setAttribute("nomArticle",a.getNomArticle());
 		request.setAttribute("description", a.getDescription());

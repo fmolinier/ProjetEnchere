@@ -53,28 +53,24 @@
 				</c:if>
 				<input type="submit" Value="Rechercher">
 			</form>
-			<c:forEach var="c" items="${liste}">
-				<form action="<%=request.getContextPath()%>/detail" method="get">
-					<div><!-- TODO bordure div -->
-						<p id="nom">${c.nomArticle}</p>
+			<c:forEach var="article" items="${liste}">
+				<form action="<%=request.getContextPath()%>/Detail" method="post">
+					<div class="border border-info">
+						<input id="numero" name="numero" type="hidden" value="${c.noArticle }">
+						<p id="nom">${article.nomArticle}</p>
 						<label for="prix">Prix : </label>
-						<c:choose>
-   							<c:when test="${!empty c.montantEnchere }">
-   								<p id="prix">${c.montantEnchere}</p>
-   							</c:when>
-   							<c:when test="${empty c.montantEnchere}">
-   								<p id="prix">${c.miseAPrix}</p>
-   							</c:when>
-						</c:choose>
+   						<p id="prix">${article.miseAPrix}</p>
 						<label for="fin">Fin de l'enchére : </label>
-						<p id="fin">${c.dateFin}</p>
+						<p id="fin">${article.dateFin}</p>
 						<label for="vender">Vendeur : </label>
 						<!-- a tester -->
-						<a href="<%=request.getContextPath()%>/Profil" id="vender">${c.pseudo}</a>
+						<a href="<%=request.getContextPath()%>/Profil" id="vender"><c:out value="${c.pseudo}"/></a>
+						<br>
 						<input type="submit" Value="Detail">
 					</div>
 				</form>
 			</c:forEach>
+			
 		</main>
 	</body>
 </html>

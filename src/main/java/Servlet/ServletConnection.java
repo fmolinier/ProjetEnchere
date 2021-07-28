@@ -44,7 +44,7 @@ public class ServletConnection extends HttpServlet {
 			session.setAttribute("pseudo", u.getPseudo());
 			session.setAttribute("email", u.getEmail());
 			session.setAttribute("numeroUtilisateur", u.getNoUtilisateur());
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Acceuil.jsp");//TODO A tester
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");//TODO A tester
 			rd.forward(request, response);
 		}else {
 			request.setAttribute("alert", "le pseudo / mot de passe est incorrect");

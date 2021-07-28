@@ -94,7 +94,7 @@ public class ServletModificationProfil extends HttpServlet {
 		} else 	if (request.getServletPath().equals("/suprimer")) {
 			b.SuprimerProfil((String) session.getAttribute("pseudo"));
 			session.invalidate();
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Aceuil.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");
 			rd.forward(request, response);
 		}
 
