@@ -23,10 +23,9 @@ public class GestionEnchereDAOJdbcImpl implements GestionEnchereDAO {
 	private static final String SELECT_PseudoUtilisateur = "SELECT no_utilisateur,pseudo FROM UTILISATEUR WHERE no_utilisateur = ?";
 	private static final String DELETE_Enchere = "DELETE FROM ARTICLE_VENDU WHERE no_Article = ?";
 	private static final String UPDATE_Enchere = "UPDATE ARTICLE_VENDU SET nom_article = ?, description = ?,date_debut_encheres = ?,date_fin_encheres = ?,mise_a_prix = ?,no_categorie = ? WHERE no_Article = ?";
-	private static final String Montant_Max_Enchere = "SELECT montant_enchere,no_utilisateur FROM ENCHERE where no_article = ? ORDER BY montant_enchere DESC"
-			+ ""
-			+ "";
-
+	private static final String Montant_Max_Enchere = "SELECT montant_enchere,no_utilisateur FROM ENCHERE where no_article = ? ORDER BY montant_enchere DESC";
+	
+	//TODO enchere remporter
 	@Override
 	public Article Detail(int noArticles) throws SQLException {
 		ResultSet rs = null;
@@ -45,21 +44,19 @@ public class GestionEnchereDAOJdbcImpl implements GestionEnchereDAO {
 		rs.next();
 		a.setNoArticle(rs.getInt("no_article"));
 		a.setNomArticle(rs.getString("nom_article"));
+		a.setDescription(rs.getString("description"));
 		a.setMiseAPrix(rs.getInt("mise_a_prix"));
 		a.setDateFin(rs.getDate("date_fin_encheres"));
-		a.setDateDebut(rs.getDate("date_debut_encheres"));
 		c = libelleCategorie(rs.getInt("no_categorie"));
 		a.setCategorie(c);
 		u = pseudoUtilisateur(rs.getInt("no_vendeur"));
 		a.setVendeur(u);
-		u = pseudoUtilisateur(rs.getInt("no_acheteur"));
-		a.setAcheteur(u);
 		a.setEtatVente(rs.getString("etat_vente"));
 		e = meillereEnchere(rs.getInt("no_article"));
 		a.setEnchere(e);
 		// Fermeture de la connexion
 		uneConnectionUtilisateur.close();
-
+		
 		return a;
 	}
 
@@ -100,7 +97,6 @@ public class GestionEnchereDAOJdbcImpl implements GestionEnchereDAO {
 		rs.next();
 		c.setNoCategorie(rs.getInt("no_categorie"));
 		c.setLibelle(rs.getString("libelle"));
-
 		// Fermeture de la connexion
 		uneConnectionCategorie.close();
 

@@ -17,7 +17,7 @@ public class GestionEnchereBLL {
 		gestionEnchereDAO = DAOFactory.getGestionEnchereDAO();
 	}
 
-	/* Récuperation des détails de l'article */
+	// Récuperation des détails de l'article
 	public Article detailArticle(int noArticle) {
 
 		Article article = new Article();
@@ -26,11 +26,12 @@ public class GestionEnchereBLL {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
 		return article;
 	}
 
 	// Ajout d'un nouvel article en vente
-	public Article ajouterArticle(Article nouvelleEnchere, String pseudo,String libelle) {
+	public Article ajouterArticle(Article nouvelleEnchere, String pseudo, String libelle) {
 
 		Article article = null;
 		LocalDate jour = LocalDate.now();
@@ -47,7 +48,9 @@ public class GestionEnchereBLL {
 
 		try {
 			int noArticle = this.gestionEnchereDAO.insertArticle(nouvelleEnchere, pseudo, libelle);
-			ajouterRetrait(nouvelleEnchere.getRetrait().getRueRetrait(), nouvelleEnchere.getRetrait().getCodePostalRetrait(),nouvelleEnchere.getRetrait().getVilleRetrait(), noArticle);
+			ajouterRetrait(nouvelleEnchere.getRetrait().getRueRetrait(),
+					nouvelleEnchere.getRetrait().getCodePostalRetrait(), nouvelleEnchere.getRetrait().getVilleRetrait(),
+					noArticle);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -56,7 +56,7 @@
 			<c:forEach var="article" items="${liste}">
 				<form action="<%=request.getContextPath()%>/Detail" method="post">
 					<div class="border border-info">
-						<input id="numero" name="numero" type="hidden" value="${c.noArticle }">
+						<input id="numero" name="numero" type="hidden" value="${article.noArticle }">
 						<p id="nom">${article.nomArticle}</p>
 						<label for="prix">Prix : </label>
    						<p id="prix">${article.miseAPrix}</p>

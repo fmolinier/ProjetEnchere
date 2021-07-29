@@ -28,7 +28,8 @@ public class ServletConnection extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Connection.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
@@ -44,11 +45,11 @@ public class ServletConnection extends HttpServlet {
 			session.setAttribute("pseudo", u.getPseudo());
 			session.setAttribute("email", u.getEmail());
 			session.setAttribute("numeroUtilisateur", u.getNoUtilisateur());
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");//TODO A tester
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");
 			rd.forward(request, response);
 		}else {
-			request.setAttribute("alert", "le pseudo / mot de passe est incorrect");
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Connection.jsp");//TODO A tester
+			request.setAttribute("alert", "le pseudo / mot de passe est incorrect");//TODO A tester alert
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Connection.jsp");
 			rd.forward(request, response);
 		}
 		//TODO alert ereur

@@ -31,6 +31,7 @@
 			<input type="password" id="confirmation">
 			<input type ="submit" value="Enregister">
 		</form>
-		<a href="Accueil.jsp"><button>Anuller</button></a>
+		<!-- EREUR deja pseudo -->
+		<a href="<%=request.getContextPath()%>/Accueil"><button>Anuller</button></a>
 	</body>
 </html>

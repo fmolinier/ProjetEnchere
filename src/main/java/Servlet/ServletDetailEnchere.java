@@ -38,8 +38,7 @@ public class ServletDetailEnchere extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		GestionEnchereBLL e = new GestionEnchereBLL();
 		Article a = new Article();
-		int num =Integer.parseInt(request.getParameter("numero"));
-		a = e.detailArticle(num);
+		a = e.detailArticle(Integer.parseInt(request.getParameter("numero")));
 		request.setAttribute("numero",a.getNoArticle());
 		request.setAttribute("nomArticle",a.getNomArticle());
 		request.setAttribute("description", a.getDescription());
@@ -50,7 +49,7 @@ public class ServletDetailEnchere extends HttpServlet {
 		request.setAttribute("fin", a.getDateFin());
 		request.setAttribute("retrait", a.getRetrait());
 		request.setAttribute("vendeur", a.getVendeur().getPseudo());
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/DetailEnchere.jsp");//TODO a tester
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/DetailEnchere.jsp");
 		rd.forward(request, response);
 	}
 

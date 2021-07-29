@@ -82,7 +82,7 @@ public class GestionUtilisateurJdbcImpl implements GestionUtilisateur{
 		uneConnection.close();
 
 	}
-	//TODO A ameliorer
+	
 	@Override
 	public Utilisateur connection(Utilisateur connection,String type,String motdepasse) throws SQLException {
 		Connection uneConnection = null;

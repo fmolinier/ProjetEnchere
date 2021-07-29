@@ -22,20 +22,17 @@ public class ServletInscription extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doPost(request, response);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Inscription.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		GestionUtilisateurBLL b = new GestionUtilisateurBLL();
 		Utilisateur u = new Utilisateur();
@@ -54,7 +51,8 @@ public class ServletInscription extends HttpServlet {
 		// nouveau mot de passe
 		if (request.getParameter("MotDePasse").equals((request.getParameter("confirmation")))) {
 			b.InscriptionUtilisateur(u);
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Connection.jsp");
+			//TODO alert
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Inscription.jsp");
 			rd.forward(request, response);
 		} else {
 			System.out.println("la confirmation du mot de passe est incorrecte");

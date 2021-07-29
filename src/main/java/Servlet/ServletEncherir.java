@@ -39,7 +39,7 @@ public class ServletEncherir extends HttpServlet {
 		HttpSession session = request.getSession();
 		FaireEnchereBLL fe = new FaireEnchereBLL();
 		fe.Encherir(Integer.parseInt(request.getParameter("numero")), Integer.parseInt(request.getParameter("proposition")), (String) session.getAttribute("pseudo"));
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");//TODO a tester
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");
 		rd.forward(request, response);
 	}
 

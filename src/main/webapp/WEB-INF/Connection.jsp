@@ -11,12 +11,12 @@
 		<form action="<%=request.getContextPath()%>/connection" method="post">
 			<label for="identifiant">Identifiant</label>
 			<input type="text" id="identifiant" autofocus="autofocus">
-			<label for="motdepasse">Identifiant</label>
+			<label for="motdepasse">Mot de passe</label>
 			<input type="password" id="motdepasse" >
-			<input type="submit" name="connection">
+			<input type="submit" value="connection">
 		</form>
-		<a href="Inscription.jsp" ><button>Inscription</button></a>
-		<c:if test="${alert !empty }">
+		<a href="<%=request.getContextPath()%>/inscription" ><button>Inscription</button></a>
+		<c:if test="${alert != null}">
 			<p class="alert alert-warning" role="alert">${alert}</p>
 		</c:if>
 		
