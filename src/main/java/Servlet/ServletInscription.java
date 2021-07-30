@@ -46,16 +46,34 @@ public class ServletInscription extends HttpServlet {
 		u.setRue(request.getParameter("rue"));
 		u.setCodePostal(Integer.parseInt(request.getParameter("codepostal")));
 		u.setVille(request.getParameter("ville"));
-
-		// on verifie que le nouveau mot de passe correspond a la confirmation du
-		// nouveau mot de passe
-		if (request.getParameter("MotDePasse").equals((request.getParameter("confirmation")))) {
+		System.out.println("------------------------------servlet");
+		System.out.println(u);
+		boolean pseudo = b.verifPseudo(request.getParameter("pseudo"));
+		boolean email = b.verifEmail(request.getParameter("email"));
+		if (email && pseudo) {		
+			// on verifie que le mot de passe correspond a la confirmation du
+			// mot de passe
+			if (request.getParameter("MotDePasse").equals((request.getParameter("confirmation")))) {
 			b.InscriptionUtilisateur(u);
-			//TODO alert
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Inscription.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Connection.jsp");
 			rd.forward(request, response);
-		} else {
-			System.out.println("la confirmation du mot de passe est incorrecte");
+			} else {
+				request.setAttribute("alert","la confirmation du mot de passe est incorrecte");//TODO A tester alert
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Connection.jsp");
+				rd.forward(request, response);
+			}
+		}else {
+			if (!pseudo) {
+				request.setAttribute("alert","le pseudo est deja utiliser");//TODO A tester alert
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Connection.jsp");
+				rd.forward(request, response);
+			} else if (!email) {
+				request.setAttribute("alert","l'Email est deja utiliser");//TODO A tester alert
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Connection.jsp");
+				rd.forward(request, response);
+			}
+			
 		}
+		
 	}
 }

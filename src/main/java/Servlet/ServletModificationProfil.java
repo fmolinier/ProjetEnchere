@@ -37,8 +37,9 @@ public class ServletModificationProfil extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
-
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO SESSION
 		GestionUtilisateurBLL b = new GestionUtilisateurBLL();
 		Utilisateur u = new Utilisateur();
 		HttpSession session = request.getSession();
@@ -57,21 +58,46 @@ public class ServletModificationProfil extends HttpServlet {
 			// recuperation info session
 			String pseudoActuel = (String) session.getAttribute("pseudo");
 			String emailActuel = (String) session.getAttribute("email");
+			boolean pseudo = b.verifPseudo(request.getParameter("pseudo"));
+			boolean email = b.verifEmail(request.getParameter("email"));
 
 			// on regarde si le mot de passe a été modifier
-			if (request.getParameter("nouveauMotDePasse").equals(null)) {
+			if (request.getParameter("confirmation").equals(null)) {
 
-				u.setMotDePasse(request.getParameter("motDePasse"));
-				b.modificationProfil(u, pseudoActuel, emailActuel);
+				if (email && pseudo) {
+					// u.setMotDePasse(request.getParameter("motdepasse")); TODO A TESTER MDP
+					b.modificationProfil(u, pseudoActuel, emailActuel);
+				} else {
+					if (!pseudo) {
+						request.setAttribute("erreur", "le pseudo est deja utiliser");// TODO A tester alert
+						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Profil.jsp");
+						rd.forward(request, response);
+					} else if (!email) {
+						request.setAttribute("erreur", "l'Email est deja utiliser");// A tester alert
+						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Profil.jsp");
+						rd.forward(request, response);
+					}
 
+				}
 				// on verifie que le nouveau mot de passe correspond a la confirmation du
 				// nouveau mot de passe
-			} else if (!request.getParameter("nouveauMotDePasse").equals(null)) {
-				if (request.getParameter("nouveauMotDePasse").equals((request.getParameter("confirmerMotDePasse")))) {
+			} else if (!request.getParameter("confirmation").equals(null)) {
+				if (request.getParameter("motdepasse").equals((request.getParameter("confirmation")))) {
+					if (email && pseudo) {
+						u.setMotDePasse(request.getParameter("confirmation"));
+						u = b.modificationProfil(u, pseudoActuel, emailActuel);
+					} else {
+						if (!pseudo) {
+							request.setAttribute("erreur", "le pseudo est deja utiliser");//A tester alert
+							RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Profil.jsp");
+							rd.forward(request, response);
+						} else if (!email) {
+							request.setAttribute("erreur", "l'Email est deja utiliser");//A tester alert
+							RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Profil.jsp");
+							rd.forward(request, response);
+						}
 
-					u.setMotDePasse(request.getParameter("nouveauMotDePasse"));
-					u = b.modificationProfil(u, pseudoActuel, emailActuel);
-
+					}
 					// affichage des modification
 					request.setAttribute("pseudo", u.getPseudo());
 					request.setAttribute("nom", u.getNom());
@@ -86,18 +112,17 @@ public class ServletModificationProfil extends HttpServlet {
 					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Profil.jsp");
 					rd.forward(request, response);
 				} else {
-					request.setAttribute("erreur","la confirmation du mot de passe est incorrecte");
+					request.setAttribute("erreur", "la confirmation du mot de passe est incorrecte");
 					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Profil.jsp");
 					rd.forward(request, response);
 				}
 			}
-		} else 	if (request.getServletPath().equals("/suprimer")) {
+		} else if (request.getServletPath().equals("/suprimer")) {
 			b.SuprimerProfil((String) session.getAttribute("pseudo"));
 			session.invalidate();
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");
 			rd.forward(request, response);
 		}
-
 
 	}
 }

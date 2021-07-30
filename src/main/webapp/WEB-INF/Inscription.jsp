@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -10,9 +10,9 @@
 	<body>
 		<form name="inscription" action="<%=request.getContextPath()%>/inscription" method="post">
 			<label for="pseudo">Pseudo</label>
-			<input type="text" id="pseudo">
+			<input type="text" id="pseudo" autofocus="autofocus">
 			<label for="nom">Nom</label>
-			<input type="text" id="nom" autofocus="autofocus">
+			<input type="text" id="nom" >
 			<label for="prenom">Prenom</label>
 			<input type="text" id="prenom">
 			<label for="email">E-mail</label>
@@ -31,7 +31,9 @@
 			<input type="password" id="confirmation">
 			<input type ="submit" value="Enregister">
 		</form>
-		<!-- EREUR deja pseudo -->
 		<a href="<%=request.getContextPath()%>/Accueil"><button>Anuller</button></a>
+		<c:if test="${alert != null}">
+			<p class="alert alert-warning" role="alert">${alert}</p>
+		</c:if>
 	</body>
 </html>

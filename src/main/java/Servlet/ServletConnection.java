@@ -52,6 +52,5 @@ public class ServletConnection extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Connection.jsp");
 			rd.forward(request, response);
 		}
-		//TODO alert ereur
 	}
 }

@@ -37,7 +37,7 @@ public class GestionUtilisateurBLL {
 
 		// recuperation de l'utilisateur
 		try {
-			utilisateur = gestionUtilisateur.connection(connection, type,motDePasse);
+			utilisateur = gestionUtilisateur.connection(connection, type, motDePasse);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -64,43 +64,18 @@ public class GestionUtilisateurBLL {
 	// Methode gerant l'inscription d'un utilisateur
 	public void InscriptionUtilisateur(Utilisateur inscrit) {
 
-		String email = null, pseudo = null;
-		// recuperation des utilisateurs TODO verif dans la BDD via index
-		try {
-			pseudo = gestionUtilisateur.verifPeusdo(inscrit.getPseudo());
-			email = gestionUtilisateur.verifEmail(inscrit.getEmail());
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		String pseudoEntrer = inscrit.getPseudo();
-		String emailEntrer = inscrit.getEmail();
-		Boolean verif = false;
-
-		// vefication si le pseudo ou l'email existe deja
-
-		if (pseudoEntrer.equals(pseudo)) {
-			verif = false;
-			System.out.println("erreur pseudo déjà utiliser");
-		} else if (emailEntrer.equals(email)) {
-			verif = false;
-			System.out.println("Erreur email déjà utiliser");
-		} else if (!pseudoEntrer.equals(pseudo) && !emailEntrer.equals(email)) {
-			verif = true;
-		}
-
 		/*
 		 * iscription dans la base de donne si le pseudo et l'email son different de ce
 		 * deja inscrit
 		 */
-		if (verif.equals(true)) {
-			try {
-				gestionUtilisateur.inscription(inscrit);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+		try {
+			System.out.println("------------------------------bll");
+			System.out.println(inscrit);
+			gestionUtilisateur.inscription(inscrit);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-
+		
 	}
 
 	// Methode gerant l'affichage du profil d'un utilisateur
@@ -118,65 +93,22 @@ public class GestionUtilisateurBLL {
 
 	// Methode gerant la modification du profil d'un utilisateur
 	public Utilisateur modificationProfil(Utilisateur profil, String pseudoActuel, String emailActuel) {
-		
+
 		Utilisateur modif = new Utilisateur();
-		String email = null, pseudo = null;
-		// recuperation des utilisateurs
 		try {
-			pseudo = gestionUtilisateur.verifPeusdo(profil.getPseudo());
-			email = gestionUtilisateur.verifEmail(profil.getEmail());
+
+			gestionUtilisateur.ModificationProfil(profil, pseudoActuel);
+			modif = afficherProfil(profil.getPseudo());
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-
-		String pseudoEntrer = profil.getPseudo();
-		String emailEntrer = profil.getEmail();
-		Boolean verif = false;
-
-		// verification si le pseudo a été modifier
-		if (!pseudoActuel.equals(profil.getPseudo())) {
-
-			// verification que le pseudo n'ai pas deja utiliser
-
-			if (pseudoEntrer.equals(pseudo)) {
-				verif = false;
-				System.out.println("erreur pseudo déjà utiliser");
-			} else if (!pseudoEntrer.equals(pseudo)) {
-				verif = true;
-			}
-
-			// verification si l'email a été modifier
-		} else if (!emailActuel.equals(profil.getEmail())) {
-
-			// verification que l'email n'ai pas deja utiliser
-			if (emailEntrer.equals(email)) {
-				verif = false;
-				System.out.println("Erreur email déjà utiliser");
-			} else if (!emailEntrer.equals(email)) {
-				verif = true;
-			}
-		}
-
-		/*
-		 * modification dans la base de donne si le pseudo et l'email son different de
-		 * ce deja inscrit
-		 */
-		if (verif.equals(true)) {
-			try {
-
-				gestionUtilisateur.ModificationProfil(profil, pseudoActuel);
-				modif = afficherProfil(profil.getPseudo());
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 		}
 
 		return modif;
 
 	}
-	
-	//suprimer mon compte
+
+	// suprimer mon compte
 	public void SuprimerProfil(String pseudo) {
 		try {
 			gestionUtilisateur.suprimerMonCompte(pseudo);
@@ -185,4 +117,36 @@ public class GestionUtilisateurBLL {
 		}
 	}
 
+	// verif
+	public boolean verifPseudo(String pseudo) {
+		String bddPseudo = null;
+		boolean verif = false;
+		try {
+			bddPseudo = gestionUtilisateur.verifPeusdo(pseudo);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		if (bddPseudo != null) {
+			verif = false;
+		} else {
+			verif = true;
+		}
+		return verif;
+	}
+
+	public boolean verifEmail(String email) {
+		String bddEmail = null;
+		boolean verif = false;
+		try {
+			bddEmail = gestionUtilisateur.verifEmail(email);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		if (bddEmail != null) {
+			verif = false;
+		} else {
+			verif = true;
+		}
+		return verif;
+	}
 }

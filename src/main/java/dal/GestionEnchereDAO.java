@@ -10,4 +10,5 @@ public interface GestionEnchereDAO {
 	public void insertRetrait(Retrait retrait) throws SQLException;
 	public Article modifierArticles (Article article) throws SQLException;
 	public void anulerArticles (int noArticle) throws SQLException;
+
 }
