@@ -13,7 +13,6 @@ import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/connection")
 public class ServletConnection extends HttpServlet {
-	
 
 	private static final long serialVersionUID = 2668221621133906349L;
 
@@ -25,32 +24,51 @@ public class ServletConnection extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Connection.jsp");
 		rd.forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		GestionUtilisateurBLL b = new GestionUtilisateurBLL();
-		Utilisateur u = new Utilisateur();
+		Utilisateur u = new Utilisateur();;
+		u = b.Connection(request.getParameter("identifiant"), request.getParameter("motdepasse"));
+		// Verification si l'utilisateur existe ou non
+		if (u.getPseudo() != null || u.getEmail() != null) {
 
-		u = b.Connection(request.getParameter("pseudo"), request.getParameter("motDePasse"));
-		if (u.getPseudo() != null && u.getEmail() != null) {
-			session.setAttribute("pseudo", u.getPseudo());
-			session.setAttribute("email", u.getEmail());
-			session.setAttribute("numeroUtilisateur", u.getNoUtilisateur());
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");
+			// Verification si le mot de passe est correct
+			if (u.getMotDePasse().equals(request.getParameter("motdepasse"))) {
+				session.setAttribute("pseudo", u.getPseudo());
+				session.setAttribute("email", u.getEmail());
+				session.setAttribute("numeroUtilisateur", u.getNoUtilisateur());
+				request.setAttribute("session", session);//TODO ???
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");
+				rd.forward(request, response);
+			} else {
+				request.setAttribute("alert", "Erreur mot de passe erronée");
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Connection.jsp");
+				rd.forward(request, response);
+			}
+
+		} else if (u.getPseudo() == null) {
+			request.setAttribute("alert", "Erreur pseudo inconnue");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Connection.jsp");
 			rd.forward(request, response);
-		}else {
-			request.setAttribute("alert", "le pseudo / mot de passe est incorrect");//TODO A tester alert
+		} else if (u.getEmail() == null) {
+			request.setAttribute("alert", "Erreur email inconnue");
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Connection.jsp");
 			rd.forward(request, response);
 		}
+
 	}
 }

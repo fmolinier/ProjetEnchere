@@ -36,7 +36,7 @@ public class ServletInscription extends HttpServlet {
 
 		GestionUtilisateurBLL b = new GestionUtilisateurBLL();
 		Utilisateur u = new Utilisateur();
-		//TODO email en minusculeI<3tentacles
+		//TODO email en minuscule / mise en page css
 		// recuperation des information
 		u.setPseudo(request.getParameter("pseudo"));
 		u.setNom(request.getParameter("nom"));
@@ -54,9 +54,6 @@ public class ServletInscription extends HttpServlet {
 			// mot de passe
 			String MotDePasse = request.getParameter("motdepasse");
 			String confirmation = request.getParameter("confirmation");
-			System.out.println("---------8---------------------servlet");
-			System.out.println(MotDePasse);
-			System.out.println(confirmation);
 			
 			if (MotDePasse.equals(confirmation)) {
 				

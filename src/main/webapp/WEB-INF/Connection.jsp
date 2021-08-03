@@ -7,12 +7,12 @@
 		<title>Insert title here</title>
 		<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	</head>
-	<body><!-- ${pageContext.request.contextPath} -->
+	<body>
 		<form action="<%=request.getContextPath()%>/connection" method="post">
 			<label for="identifiant">Identifiant</label>
-			<input type="text" id="identifiant" autofocus="autofocus">
+			<input type="text" name="identifiant" id="identifiant" autofocus="autofocus">
 			<label for="motdepasse">Mot de passe</label>
-			<input type="password" id="motdepasse" >
+			<input type="password" name="motdepasse" id="motdepasse" >
 			<input type="submit" value="connection">
 		</form>
 		<a href="<%=request.getContextPath()%>/inscription" ><button>Inscription</button></a>

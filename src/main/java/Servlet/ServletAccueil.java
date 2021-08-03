@@ -32,10 +32,13 @@ public class ServletAccueil extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
+		//TODO SESSION apres connection request.setAttribute("session", session);
 		ListeEnchereBLL b = new ListeEnchereBLL();
 		List<Article> liste = new ArrayList<Article>();
 		liste = b.listeEnchere();
 		request.setAttribute("liste", liste);
+		System.out.println("----------------------------------------------------------------");
+		System.out.println(liste);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");
 		rd.forward(request, response);
 	}

@@ -63,8 +63,9 @@
 						<label for="fin">Fin de l'enchére : </label>
 						<p id="fin">${article.dateFin}</p>
 						<label for="vender">Vendeur : </label>
-						<!-- a tester -->
-						<a href="<%=request.getContextPath()%>/Profil" id="vender"><c:out value="${c.pseudo}"/></a>
+						<label id="vender"> 						
+							<a href="<%=request.getContextPath()%>/Profil"><c:out value="${article.vendeur.pseudo}"/></a>
+						</label>
 						<br>
 						<input type="submit" Value="Detail">
 					</div>

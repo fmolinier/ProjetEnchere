@@ -25,8 +25,7 @@ public class GestionUtilisateurBLL {
 		connection.setMotDePasse(motDePasse);
 
 		String type = null;
-
-		//
+		
 		if (login.contains("@")) {
 			type = "email";
 			connection.setEmail(login);
@@ -41,23 +40,6 @@ public class GestionUtilisateurBLL {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-		// Verification si l'utilisateur existe ou non
-		if (utilisateur.getPseudo() != null || utilisateur.getEmail() != null) {
-
-			// Verification si le mot de passe est correct
-			if (utilisateur.getMotDePasse().equals(connection.getMotDePasse())) {
-				return utilisateur;
-			} else {
-				System.out.println("Erreur mot de passe erronée");
-			}
-
-		} else if (utilisateur.getPseudo() == null) {
-			System.out.println("Erreur pseudo inconnue");
-		} else if (utilisateur.getEmail() == null) {
-			System.out.println("Erreur email inconnue");
-		}
-
 		return utilisateur;
 	}
 
@@ -69,13 +51,11 @@ public class GestionUtilisateurBLL {
 		 * deja inscrit
 		 */
 		try {
-			System.out.println("------------------------------bll");
-			System.out.println(inscrit);
 			gestionUtilisateur.inscription(inscrit);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	// Methode gerant l'affichage du profil d'un utilisateur
