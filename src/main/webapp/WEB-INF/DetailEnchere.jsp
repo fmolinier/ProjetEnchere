@@ -19,7 +19,7 @@
 			<label for="enchere">Meilleure offre : </label>
 			<label id="enchere">${enchere}</label>
 			<label id="pseudoenchere"> par 						
-				<a href="<%=request.getContextPath()%>/Profil" id="vender"><c:out value="${pseudoenchere}"/></a>
+				<a href='#' onclick='document.getElementById("pseudoEnchereur").submit()'>${pseudoenchere}</a>
 			</label>
 			<label for="prix">Mise à prix : </label>
 			<label id="prix">${prix}</label>
@@ -28,10 +28,18 @@
 			<label for="retrait">Retrait : </label>
 			<label id="retrait">${retrait}</label>
 			<label for="vendeur">Vendeur : </label>
-			<label id="vendeur">${vendeur}</label>
+			<label id="vendeur">						
+				<a href='#' onclick='document.getElementById("pseudoVendeur").submit()'>${vendeur}</a>
+			</label>
 			<label for="proposition">Ma proposition : </label>
 			<input type="number" id="proposition">
 			<input type="submit" value="Enchérir">
+		</form>
+		<form id="pseudoEnchereur" action="<%=request.getContextPath()%>/Profil">
+			<input type="hidden" name="pseudoEnchereur" value="${pseudoenchere}"/>
+		</form>
+		<form id="pseudoVendeur" action="<%=request.getContextPath()%>/Profil">
+			<input type="hidden" name="pseudoVendeur" value="${vendeur}"/>
 		</form>
 	</body>
 </html>

@@ -37,8 +37,6 @@ public class ServletAccueil extends HttpServlet {
 		List<Article> liste = new ArrayList<Article>();
 		liste = b.listeEnchere();
 		request.setAttribute("liste", liste);
-		System.out.println("----------------------------------------------------------------");
-		System.out.println(liste);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");
 		rd.forward(request, response);
 	}

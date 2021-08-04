@@ -14,46 +14,46 @@
 				<p>${erreur}</p>
 			</div>
 		</c:if>
-		<c:if test="${empty session}">
+		<c:if test="${session == null}">
 			<label for="pseudo">Pseudo</label>
-			<input type="text" id="pseudo">
+			<label id="pseudo">${pseudo}</label>
 			<label for="nom">Nom</label>
-			<input type="text" id="nom">
+			<label id="nom">${nom}</label>
 			<label for="prenom">Prenom</label>
-			<input type="text" id="prenom">
+			<label id="prenom" >${prenom}</label>
 			<label for="email">E-mail</label>
-			<input type="text" id="email">
+			<label id="email" >${email}</label>
 			<label for="telephone">Téléphone</label>
-			<input type="text" id="telephone">
+			<label id="telephone">${telephone}</label>
 			<label for="rue">Rue</label>
-			<input type="text" id="rue">
+			<label id="rue">${rue}</label>
 			<label for="codepostal">Code Postal</label>
-			<input type="text" id="codepostal">
+			<label id="codepostal">${codepostal}</label>
 			<label for="ville">Ville</label>
-			<input type="text" id="ville">
+			<label id="ville">${ville}</label>
 		</c:if>
-		<c:if test="${!empty session}">	
+		<c:if test="${session != null}">	
 			<form name="profil" action="<%=request.getContextPath()%>/modifier" method="post">
 				<label for="pseudo">Pseudo</label>
-				<input type="text" id="pseudo" autofocus="autofocus">
+				<input type="text" name="pseudo" autofocus="autofocus">
 				<label for="nom">Nom</label>
-				<input type="text" id="nom">
+				<input type="text" name="nom" value="">
 				<label for="prenom">Prenom</label>
-				<input type="text" id="prenom">
+				<input type="text" name="prenom">
 				<label for="email">E-mail</label>
-				<input type="text" id="email">
+				<input type="text" name="email">
 				<label for="telephone">Téléphone</label>
-				<input type="text" id="telephone">
+				<input type="text" name="telephone">
 				<label for="rue">Rue</label>
-				<input type="text" id="rue">
+				<input type="text" name="rue">
 				<label for="codepostal">Code Postal</label>
-				<input type="text" id="codepostal">
+				<input type="text" name="codepostal">
 				<label for="ville">Ville</label>
-				<input type="text" id="ville">
+				<input type="text" name="ville">
 				<label for="motdepasse">Mot de passe</label>
-				<input type="password" id="motdepasse">
+				<input type="password" name="motdepasse">
 				<label for="confirmation">Confirmation</label>
-				<input type="password" id="confirmation">
+				<input type="password" name="confirmation">
 				<input type ="submit" value="Enregister">
 			</form>
 			<form name="profil" action="<%=request.getContextPath()%>/supprimer" method="post">

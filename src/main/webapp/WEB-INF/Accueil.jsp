@@ -8,7 +8,31 @@
 		<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	</head>
 	<body>
-		<%@ include file="./fragments/header.html" %>
+		<header>
+			<c:choose>
+				<c:when test="${empty session }">
+					<div>
+						<img alt="logo" src="">
+						<a href="<%=request.getContextPath()%>/inscription">S'inscrire</a>
+						<a href="<%=request.getContextPath()%>/connection">Se connecter</a>
+					</div>
+				</c:when>
+				<c:when test="${!empty session}">
+					<div>
+						<img alt="logo" src="">
+						<a href="<%=request.getContextPath()%>/NouvelleEnchere">Vendre un article</a>
+						<form id="monpseudo" action="<%=request.getContextPath()%>/MonProfil">
+							<input type="hidden" name="pseudoUtilisateur" value="${session.pseudo}"/>
+						</form>
+						<a href='#' onclick='document.getElementById("monpseudo").submit()'>Mon profil</a>
+						<a href="<%=request.getContextPath()%>/Deconnection">Deconnexion</a>
+					</div>
+				</c:when>
+			</c:choose>
+			<div>
+				<h1>Liste des encheres</h1>
+			</div>
+		</header>
 		<main>
 			<form action="<%=request.getContextPath()%>/recherche" method="get">
 				<input type="search" id="recherche">
@@ -64,14 +88,16 @@
 						<p id="fin">${article.dateFin}</p>
 						<label for="vender">Vendeur : </label>
 						<label id="vender"> 						
-							<a href="<%=request.getContextPath()%>/Profil"><c:out value="${article.vendeur.pseudo}"/></a>
+							<a href='#' onclick='document.getElementById("pseudo").submit()'>${article.vendeur.pseudo}</a>
 						</label>
 						<br>
 						<input type="submit" Value="Detail">
 					</div>
 				</form>
+				<form id="pseudo" action="<%=request.getContextPath()%>/Profil">
+					<input type="hidden" name="pseudoVendeur" value="${article.vendeur.pseudo}"/>
+				</form>
 			</c:forEach>
-			
 		</main>
 	</body>
 </html>
