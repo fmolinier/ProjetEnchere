@@ -14,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ServletNouvelleEnchere
@@ -33,7 +34,6 @@ public class ServletNouvelleEnchere extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//TODO session
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/NouveauEnchere.jsp");
 		rd.forward(request, response);
 	}
@@ -41,11 +41,12 @@ public class ServletNouvelleEnchere extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		GestionEnchereBLL e = new GestionEnchereBLL();
+		HttpSession session = request.getSession();
 		Article a = new Article();
 		Retrait r = new Retrait();
+		
 		// recuperation des information
 		a.setNomArticle(request.getParameter("nom"));
 		a.setDescription(request.getParameter("description"));
@@ -58,15 +59,17 @@ public class ServletNouvelleEnchere extends HttpServlet {
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
+		
 		a.setDateDebut(debut);
 		a.setDateFin(fin);
 		r.setRueRetrait(request.getParameter("rue"));
 		r.setCodePostalRetrait(Integer.parseInt(request.getParameter("codepostal")));
 		r.setVilleRetrait(request.getParameter("ville"));
 		a.setRetrait(r);
-		
-		e.ajouterArticle(a, request.getParameter("categorie"), getServletInfo());
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/DetailEnchere.jsp");
+		System.out.println("-------------------------------------servlet");
+		System.out.println(a);
+		e.ajouterArticle(a,(String) session.getAttribute("pseudo") ,request.getParameter("categorie"));
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");
 		rd.forward(request, response);
 
 	}

@@ -15,21 +15,28 @@
 			</div>
 		</c:if>
 		<c:if test="${session == null}">
-			<label for="pseudo">Pseudo</label>
+			<label for="pseudo">Pseudo : </label>
 			<label id="pseudo">${pseudo}</label>
-			<label for="nom">Nom</label>
+			<br>
+			<label for="nom">Nom : </label>
 			<label id="nom">${nom}</label>
-			<label for="prenom">Prenom</label>
+			<br>
+			<label for="prenom">Prenom : </label>
 			<label id="prenom" >${prenom}</label>
-			<label for="email">E-mail</label>
+			<br>
+			<label for="email">E-mail : </label>
 			<label id="email" >${email}</label>
-			<label for="telephone">Téléphone</label>
+			<br>
+			<label for="telephone">Téléphone : </label>
 			<label id="telephone">${telephone}</label>
-			<label for="rue">Rue</label>
+			<br>
+			<label for="rue">Rue : </label>
 			<label id="rue">${rue}</label>
-			<label for="codepostal">Code Postal</label>
+			<br>
+			<label for="codepostal">Code Postal : </label>
 			<label id="codepostal">${codepostal}</label>
-			<label for="ville">Ville</label>
+			<br>
+			<label for="ville">Ville : </label>
 			<label id="ville">${ville}</label>
 		</c:if>
 		<c:if test="${session != null}">	

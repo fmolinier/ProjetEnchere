@@ -5,6 +5,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+
 import bo.Article;
 import bo.Categorie;
 import bo.Enchere;
@@ -60,6 +63,7 @@ public class GestionEnchereDAOJdbcImpl implements GestionEnchereDAO {
 		return a;
 	}
 
+	//meillere enchere
 	private Enchere meillereEnchere(int numeroArticle) throws SQLException {
 		ResultSet rs = null;
 		Enchere e = new Enchere();
@@ -124,9 +128,11 @@ public class GestionEnchereDAOJdbcImpl implements GestionEnchereDAO {
 		return u;
 	}
 
+	//nouvelle enchere / article
 	@Override
 	public int insertArticle(Article article, String pseudo, String libelle) throws SQLException {
-
+		System.out.println("-----------------------------------------------------dao");
+		
 		// Connection à la BDD
 		ResultSet rs;
 		Connection uneConnection = JdbcTools.getConnection();
@@ -139,8 +145,15 @@ public class GestionEnchereDAOJdbcImpl implements GestionEnchereDAO {
 		pstmt.setString(1, article.getNomArticle());
 		pstmt.setString(2, article.getDescription());
 		pstmt.setInt(3, article.getMiseAPrix());
-		pstmt.setDate(4, (Date) article.getDateDebut());
-		pstmt.setDate(5, (Date) article.getDateFin());
+		
+		//converti java date en sql date
+		long timeInMilliSeconds = article.getDateDebut().getTime();
+        java.sql.Date datedebut = new java.sql.Date(timeInMilliSeconds);
+		pstmt.setDate(4,datedebut);
+		timeInMilliSeconds = article.getDateFin().getTime();
+        java.sql.Date datefin = new java.sql.Date(timeInMilliSeconds);
+		pstmt.setDate(5,datefin);
+		
 		pstmt.setString(6, article.getEtatVente());
 		pstmt.setInt(7, noUtilisateur(pseudo));
 		pstmt.setInt(8, noCategorie(libelle));
@@ -154,6 +167,10 @@ public class GestionEnchereDAOJdbcImpl implements GestionEnchereDAO {
 
 		return noArticle;
 	}
+	public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
+		return dateToConvert.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+	}
+
 
 	private int noUtilisateur(String pseudo) throws SQLException {
 		ResultSet rs = null;

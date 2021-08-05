@@ -10,19 +10,19 @@
 	<body>
 		<header>
 			<c:choose>
-				<c:when test="${empty session }">
+				<c:when test="${empty sessionScope.pseudo}">
 					<div>
 						<img alt="logo" src="">
 						<a href="<%=request.getContextPath()%>/inscription">S'inscrire</a>
 						<a href="<%=request.getContextPath()%>/connection">Se connecter</a>
 					</div>
 				</c:when>
-				<c:when test="${!empty session}">
+				<c:when test="${!empty sessionScope.pseudo}">
 					<div>
 						<img alt="logo" src="">
 						<a href="<%=request.getContextPath()%>/NouvelleEnchere">Vendre un article</a>
 						<form id="monpseudo" action="<%=request.getContextPath()%>/MonProfil">
-							<input type="hidden" name="pseudoUtilisateur" value="${session.pseudo}"/>
+							<input type="hidden" name="pseudoUtilisateur" value="${sessionScope.pseudo}"/>
 						</form>
 						<a href='#' onclick='document.getElementById("monpseudo").submit()'>Mon profil</a>
 						<a href="<%=request.getContextPath()%>/Deconnection">Deconnexion</a>
@@ -43,7 +43,7 @@
 					<option value="Vêtement">Vêtement</option>
 					<option value="Sport & loisir">Sport/Loisir</option>
 				</select>
-				<c:if test="${session != null }">
+				<c:if test="${!empty sessionScope.pseudo}">
 					<div>
 						<p>Achats</p>
 						<div>

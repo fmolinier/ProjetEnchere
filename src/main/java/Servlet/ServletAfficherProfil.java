@@ -64,15 +64,13 @@ public class ServletAfficherProfil extends HttpServlet {
 		}else if (request.getServletPath().equals("/Profil")){
 					
 			u = b.afficherProfil(request.getParameter("pseudoVendeur"));
-			System.out.println("--------------------------------");	
-			System.out.println(u);
 			request.setAttribute("pseudo", u.getPseudo());
 			request.setAttribute("nom", u.getNom());
 			request.setAttribute("prenom", u.getPrenom());
 			request.setAttribute("email", u.getEmail());
 			request.setAttribute("telephone", u.getTelephone());
 			request.setAttribute("rue", u.getRue());
-			request.setAttribute("codePostal", u.getCodePostal());
+			request.setAttribute("codepostal", u.getCodePostal());
 			request.setAttribute("ville", u.getVille());
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Profil.jsp");

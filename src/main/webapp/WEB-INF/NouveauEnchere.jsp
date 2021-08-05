@@ -11,40 +11,42 @@
 		<h1>Nouvelle Enchere</h1>
 		<form action="<%=request.getContextPath()%>/NouvelleEnchere" method="post">
 			<label for="nom">nom</label> 
-			<input id="nom" type="text"> 
-			
+			<input name="nom" type="text"> 
+			<br>
 			<label for="description">description</label>
-			<textarea id="description" rows="5" cols="33"></textarea>
-			
+			<textarea name="description" rows="5" cols="33"></textarea>
+			<br>
 			<label for="categorie">catégorie</label> 
-			<select id="categorie">
+			<select name="categorie">
 				<option value="">--choisiessez une option--</option>
 				<option value="Informatique">Informatique</option>
 				<option value="Ameublement">Ameublement</option>
 				<option value="Vêtement">Vêtement</option>
 				<option value="Sport & loisir">Sport/Loisir</option>
 			</select> 
-			
+			<br>
 			<label for="prix">Mise à prix</label> 
-			<input id="prix" type="text">
-			
-			<label for="debut">Mise à prix</label> 
-			<input type="date" id="debut">
-			
-			<label for="fin">Mise à prix</label> 
-			<input type="date" id="fin">
-			
+			<input name="prix" type="text">
+			<br>
+			<label for="debut">Date debut</label> 
+			<input type="date" name="debut">
+			<br>
+			<label for="fin">Date fin</label> 
+			<input type="date" name="fin">
+			<br>
 			<div>
 				<h2>Retrait</h2>
+				<br>
 				<label for="rue">Rue</label> 
-				<input id="rue" type="text"> 
-				
+				<input name="rue" type="text"> 
+				<br>
 				<label for="codepostal">Code Postal</label>
-				<input id="codepostal" type="text"> 
-				
+				<input name="codepostal" type="text"> 
+				<br>
 				<label for="ville">Ville</label> 
-				<input id="ville" type="text">
+				<input name="ville" type="text">
 			</div>
+			<br>
 			<input type="submit" value="Enregistrer">
 		</form>
 		<a href="Accueil.jsp"><button>Anuller</button></a>

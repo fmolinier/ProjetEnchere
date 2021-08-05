@@ -31,9 +31,8 @@ public class GestionEnchereBLL {
 	}
 
 	// Ajout d'un nouvel article en vente
-	public Article ajouterArticle(Article nouvelleEnchere, String pseudo, String libelle) {
-
-		Article article = null;
+	public void ajouterArticle(Article nouvelleEnchere, String pseudo, String libelle) {
+		System.out.println("-----------------------------------------------------bll");
 		LocalDate jour = LocalDate.now();
 		LocalDate debut = convertToLocalDateViaInstant(nouvelleEnchere.getDateDebut());
 		LocalDate fin = convertToLocalDateViaInstant(nouvelleEnchere.getDateFin());
@@ -54,8 +53,7 @@ public class GestionEnchereBLL {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-		return article;
+		System.out.println("-----------------------------------------------------bll----fin");
 	}
 
 	public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
