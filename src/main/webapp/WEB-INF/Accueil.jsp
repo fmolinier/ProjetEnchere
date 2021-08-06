@@ -35,8 +35,8 @@
 		</header>
 		<main>
 			<form action="<%=request.getContextPath()%>/recherche" method="get">
-				<input type="search" id="recherche">
-				<select id="categorie">
+				<input type="search" name="recherche">
+				<select name="categorie">
 					<option value="tous">Toutes</option>
 					<option value="Informatique">Informatique</option>
 					<option value="Ameublement">Ameublement</option>

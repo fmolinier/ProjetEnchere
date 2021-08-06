@@ -74,7 +74,6 @@ public class ServletListeEnchere extends HttpServlet {
 			liste = b.listeEnchere();
 		}
 		request.setAttribute("liste", liste);
-		request.setAttribute("session", session);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");// ?????
 		rd.forward(request, response);
 

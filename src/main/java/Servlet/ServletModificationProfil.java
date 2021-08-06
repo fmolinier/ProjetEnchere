@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebServlet(urlPatterns = { "/modifier", "/suprimer" })
+@WebServlet(urlPatterns = { "/modifier", "/supprimer" })
 public class ServletModificationProfil extends HttpServlet {
 
 	/**
@@ -28,8 +28,7 @@ public class ServletModificationProfil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
 
@@ -37,14 +36,13 @@ public class ServletModificationProfil extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO SESSION
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		GestionUtilisateurBLL b = new GestionUtilisateurBLL();
 		Utilisateur u = new Utilisateur();
 		HttpSession session = request.getSession();
+		String confirmation = request.getParameter("confirmation");
+		String nmdp = request.getParameter("nouveaumotdepasse");
 		if (request.getServletPath().equals("/modifier")) {
-
 			// recuperation des information
 			u.setPseudo(request.getParameter("pseudo"));
 			u.setNom(request.getParameter("nom"));
@@ -52,7 +50,7 @@ public class ServletModificationProfil extends HttpServlet {
 			u.setEmail(request.getParameter("email"));
 			u.setTelephone(request.getParameter("telephone"));
 			u.setRue(request.getParameter("rue"));
-			u.setCodePostal(Integer.parseInt(request.getParameter("codePostal")));
+			u.setCodePostal(Integer.parseInt(request.getParameter("codepostal")));
 			u.setVille(request.getParameter("ville"));
 
 			// recuperation info session
@@ -62,18 +60,22 @@ public class ServletModificationProfil extends HttpServlet {
 			boolean email = b.verifEmail(request.getParameter("email"));
 
 			// on regarde si le mot de passe a été modifier
-			if (request.getParameter("confirmation").equals(null)) {
+			if (confirmation.isBlank()) {
 
 				if (email && pseudo) {
-					// u.setMotDePasse(request.getParameter("motdepasse")); TODO A TESTER MDP
-					b.modificationProfil(u, pseudoActuel, emailActuel);
+					u.setMotDePasse(request.getParameter("motdepasse"));
+					u = b.modificationProfil(u, pseudoActuel, emailActuel);
+					session.setAttribute("pseudo", u.getPseudo());
+					session.setAttribute("email", u.getEmail());
+					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");
+					rd.forward(request, response);
 				} else {
 					if (!pseudo) {
-						request.setAttribute("erreur", "le pseudo est deja utiliser");// TODO A tester alert
+						request.setAttribute("erreur", "le pseudo est deja utiliser");//TODO regarder pourquoi sa n'affiche pas tout
 						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Profil.jsp");
 						rd.forward(request, response);
 					} else if (!email) {
-						request.setAttribute("erreur", "l'Email est deja utiliser");// A tester alert
+						request.setAttribute("erreur", "l'Email est deja utiliser");
 						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Profil.jsp");
 						rd.forward(request, response);
 					}
@@ -81,18 +83,22 @@ public class ServletModificationProfil extends HttpServlet {
 				}
 				// on verifie que le nouveau mot de passe correspond a la confirmation du
 				// nouveau mot de passe
-			} else if (!request.getParameter("confirmation").equals(null)) {
-				if (request.getParameter("motdepasse").equals((request.getParameter("confirmation")))) {
+			} else if (!confirmation.isBlank()) {
+				if (nmdp.equals(confirmation)) {
 					if (email && pseudo) {
-						u.setMotDePasse(request.getParameter("confirmation"));
+						u.setMotDePasse(confirmation);
 						u = b.modificationProfil(u, pseudoActuel, emailActuel);
+						session.setAttribute("pseudo", u.getPseudo());
+						session.setAttribute("email", u.getEmail());
+						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");
+						rd.forward(request, response);
 					} else {
 						if (!pseudo) {
-							request.setAttribute("erreur", "le pseudo est deja utiliser");//A tester alert
+							request.setAttribute("erreur", "le pseudo est deja utiliser");
 							RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Profil.jsp");
 							rd.forward(request, response);
 						} else if (!email) {
-							request.setAttribute("erreur", "l'Email est deja utiliser");//A tester alert
+							request.setAttribute("erreur", "l'Email est deja utiliser");
 							RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Profil.jsp");
 							rd.forward(request, response);
 						}
@@ -117,7 +123,7 @@ public class ServletModificationProfil extends HttpServlet {
 					rd.forward(request, response);
 				}
 			}
-		} else if (request.getServletPath().equals("/suprimer")) {
+		} else if (request.getServletPath().equals("/supprimer")) {
 			b.SuprimerProfil((String) session.getAttribute("pseudo"));
 			session.invalidate();
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");

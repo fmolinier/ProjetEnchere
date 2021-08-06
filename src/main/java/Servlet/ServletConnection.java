@@ -52,7 +52,7 @@ public class ServletConnection extends HttpServlet {
 				session.setAttribute("numeroUtilisateur", u.getNoUtilisateur());
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");
 				rd.forward(request, response);
-			} else {
+			} else if (!u.getMotDePasse().equals(request.getParameter("motdepasse"))) {
 				request.setAttribute("alert", "Erreur mot de passe erronée");
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Connection.jsp");
 				rd.forward(request, response);

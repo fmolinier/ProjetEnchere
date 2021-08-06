@@ -66,8 +66,6 @@ public class ServletNouvelleEnchere extends HttpServlet {
 		r.setCodePostalRetrait(Integer.parseInt(request.getParameter("codepostal")));
 		r.setVilleRetrait(request.getParameter("ville"));
 		a.setRetrait(r);
-		System.out.println("-------------------------------------servlet");
-		System.out.println(a);
 		e.ajouterArticle(a,(String) session.getAttribute("pseudo") ,request.getParameter("categorie"));
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");
 		rd.forward(request, response);

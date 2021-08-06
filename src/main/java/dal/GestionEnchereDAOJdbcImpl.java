@@ -130,9 +130,7 @@ public class GestionEnchereDAOJdbcImpl implements GestionEnchereDAO {
 
 	//nouvelle enchere / article
 	@Override
-	public int insertArticle(Article article, String pseudo, String libelle) throws SQLException {
-		System.out.println("-----------------------------------------------------dao");
-		
+	public int insertArticle(Article article, String pseudo, String libelle) throws SQLException {		
 		// Connection à la BDD
 		ResultSet rs;
 		Connection uneConnection = JdbcTools.getConnection();

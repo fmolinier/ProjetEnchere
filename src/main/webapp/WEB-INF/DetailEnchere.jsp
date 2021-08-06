@@ -11,29 +11,38 @@
 		<h1>Detail vente</h1>
 		<h3 id="nomArticle">${nomArticle}</h3>
 		<form action="<%=request.getContextPath()%>/Encherir" method="post">
-			<input id="numero" name="numero" type="hidden" value="${numeroArticle}">
+			<input name="numero" name="numero" type="hidden" value="${numeroArticle}">
 			<label for="description">Description : </label>
-			<textarea id="description" disabled="disabled">${description}</textarea>
+			<textarea name="description" disabled="disabled">${description}</textarea>
+			<br>
 			<label for="categorie">Categorie : </label>
 			<label id="categorie">${categorie}</label>
+			<br>
 			<label for="enchere">Meilleure offre : </label>
 			<label id="enchere">${enchere}</label>
 			<label id="pseudoenchere"> par 						
 				<a href='#' onclick='document.getElementById("pseudoEnchereur").submit()'>${pseudoenchere}</a>
 			</label>
+			<br>
 			<label for="prix">Mise à prix : </label>
 			<label id="prix">${prix}</label>
+			<br>
 			<label for="fin">Fin de l'enchère : </label>
 			<label id="fin">${fin}</label>
+			<br>
 			<label for="retrait">Retrait : </label>
 			<label id="retrait">${retrait}</label>
+			<br>
 			<label for="vendeur">Vendeur : </label>
-			<label id="vendeur">						
+			<label name="vendeur">						
 				<a href='#' onclick='document.getElementById("pseudoVendeur").submit()'>${vendeur}</a>
 			</label>
-			<label for="proposition">Ma proposition : </label>
-			<input type="number" id="proposition">
-			<input type="submit" value="Enchérir">
+			<br>
+			<c:if test="${!empty sessionScope.pseudo}">
+				<label for="proposition">Ma proposition : </label>
+				<input type="number" name="proposition">
+				<input type="submit" value="Enchérir">
+			</c:if>
 		</form>
 		<form id="pseudoEnchereur" action="<%=request.getContextPath()%>/Profil">
 			<input type="hidden" name="pseudoEnchereur" value="${pseudoenchere}"/>

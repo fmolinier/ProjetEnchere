@@ -54,9 +54,9 @@ public class ServletAfficherProfil extends HttpServlet {
 			request.setAttribute("email", u.getEmail());
 			request.setAttribute("telephone", u.getTelephone());
 			request.setAttribute("rue", u.getRue());
-			request.setAttribute("codePostal", u.getCodePostal());
+			request.setAttribute("codepostal", u.getCodePostal());
 			request.setAttribute("ville", u.getVille());
-			request.setAttribute("motDePasse", u.getMotDePasse());
+			request.setAttribute("motdepasse", u.getMotDePasse());
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Profil.jsp");
 			rd.forward(request, response);
