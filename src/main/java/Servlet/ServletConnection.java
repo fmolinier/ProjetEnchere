@@ -24,18 +24,15 @@ public class ServletConnection extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Connection.jsp");
 		rd.forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -50,7 +47,7 @@ public class ServletConnection extends HttpServlet {
 				session.setAttribute("pseudo", u.getPseudo());
 				session.setAttribute("email", u.getEmail());
 				session.setAttribute("numeroUtilisateur", u.getNoUtilisateur());
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/Accueil");
 				rd.forward(request, response);
 			} else if (!u.getMotDePasse().equals(request.getParameter("motdepasse"))) {
 				request.setAttribute("alert", "Erreur mot de passe erronée");

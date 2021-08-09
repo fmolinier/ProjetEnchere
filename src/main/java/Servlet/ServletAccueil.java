@@ -32,7 +32,6 @@ public class ServletAccueil extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
-		System.out.println("-------------------------servlet accueil");
 		//TODO regarder pourquoi sa n'affiche rien les autres fois
 		ListeEnchereBLL b = new ListeEnchereBLL();
 		List<Article> liste = new ArrayList<Article>();

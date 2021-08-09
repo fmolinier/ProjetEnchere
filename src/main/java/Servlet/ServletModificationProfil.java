@@ -67,7 +67,7 @@ public class ServletModificationProfil extends HttpServlet {
 					u = b.modificationProfil(u, pseudoActuel, emailActuel);
 					session.setAttribute("pseudo", u.getPseudo());
 					session.setAttribute("email", u.getEmail());
-					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");
+					RequestDispatcher rd = request.getRequestDispatcher("/MonProfil");
 					rd.forward(request, response);
 				} else {
 					if (!pseudo) {

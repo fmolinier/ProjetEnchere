@@ -34,7 +34,7 @@
 			</div>
 		</header>
 		<main>
-			<form action="<%=request.getContextPath()%>/recherche" method="get">
+			<form action="<%=request.getContextPath()%>/recherche" method="post">
 				<input type="search" name="recherche">
 				<select name="categorie">
 					<option value="tous">Toutes</option>

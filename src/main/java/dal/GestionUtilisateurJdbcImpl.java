@@ -19,6 +19,7 @@ public class GestionUtilisateurJdbcImpl implements GestionUtilisateur{
 	private static final String UPDATE_ModifProfil = "UPDATE UTILISATEUR SET pseudo = ?,nom = ?,prenom = ?,email = ?,telephone = ?,rue = ?,code_postal = ?,ville = ?,mot_de_passe = ? WHERE pseudo = ?";
 	private static final String DELETE_Pseudo=" DELETE FROM UTILISATEUR WHERE pseudo = ?";
 
+	//TODO changement etat vente automatique ?
 	//recuperation des informations de l'utilisateur
 	@Override
 	public Utilisateur VoirProfil(String pseudo) throws SQLException {

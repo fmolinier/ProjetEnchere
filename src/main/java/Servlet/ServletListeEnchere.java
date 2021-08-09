@@ -36,21 +36,22 @@ public class ServletListeEnchere extends HttpServlet {
 		HttpSession session = request.getSession();
 		ListeEnchereBLL b = new ListeEnchereBLL();
 		List<Article> liste = new ArrayList<Article>();
+		List<Article> recherche = new ArrayList<Article>();
 		String pseudo =  (String) session.getAttribute("pseudo");
 
 		//TODO a modifier
-		if (request.getParameter("categorie").equals("tous") && request.getParameter("recherche").equals(null)) {
-			liste = b.listeEnchere();
-
-		} else if (!request.getParameter("categorie").equals("tous")) {
-
-			liste = b.listeCategorie(request.getParameter("categorie"));
-
-		} else if (!request.getParameter("recherche").equals(null)) {
-
-			liste = b.listeNomArticle(request.getParameter("recherche"));
-
-		} else if (request.getParameter("mesVente").equals("venteEnCours")) {
+		//nom et categorie seulement
+		//nom et categorie et achats/vente
+		if (pseudo == null) {
+			if (request.getParameter("categorie").equals("tous") && request.getParameter("recherche").equals(null)) {
+				liste = b.listeEnchere();
+			} else if (!request.getParameter("categorie").equals("tous")) {
+				liste = b.listeCategorie(request.getParameter("categorie"));
+			} else if (!request.getParameter("recherche").equals(null)) {
+				liste = b.listeNomArticle(request.getParameter("recherche"));
+			}
+		}
+		/* else if (request.getParameter("mesVente").equals("venteEnCours")) {
 
 			liste = b.listeMesVenteEnCours(pseudo);
 
@@ -72,8 +73,11 @@ public class ServletListeEnchere extends HttpServlet {
 		} else if (request.getParameter("achat").equals("enchereOuverte")) {
 
 			liste = b.listeEnchere();
-		}
+		}*/
+		
 		request.setAttribute("liste", liste);
+		System.out.println("---------------------------servlet");
+		System.out.println(liste);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");// ?????
 		rd.forward(request, response);
 
