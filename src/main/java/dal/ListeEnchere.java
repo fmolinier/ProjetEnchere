@@ -10,7 +10,7 @@ public interface ListeEnchere {
 	public List<Article> listeArticleVendu(String etatVente) throws SQLException;
 	public List<Article> listeEnchereRemporter(String etatVente,String pseudoAcheteur) throws SQLException;
 	public List<Article> listeArticleCategorie(String etatVente, String categorie) throws SQLException;
-	public List<Article> listeMesVente(String etatVente, String vendeur) throws SQLException;
+	public List<Article> listeMesVente(String etatVente, String vendeur, String recherche) throws SQLException;
 	public List<Article> listeMesEnchereEnCours (String pseudo)throws SQLException;
 	public List<Article> listeNomArticle(String etatVente, String nom)throws SQLException;
 	public Article article(int noArticle, String etatVente) throws SQLException;
@@ -18,5 +18,7 @@ public interface ListeEnchere {
 	public Categorie libelleCategorie(int noCategorie) throws SQLException;
 	public Categorie NoCategorie(String libelleCategorie) throws SQLException;
 	public Utilisateur noUtilisateur(String pseudo) throws SQLException;
+	public List<Article> listeNomEtCategorieArticle(String etatVente,String categorie, String nom) throws SQLException;
+	public List<Article> listeMesVenteCategorie(String etatVente, String vendeur, String recherche,String categorie) throws SQLException;
 
 }
