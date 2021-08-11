@@ -47,15 +47,15 @@
 					<div>
 						<p>Achats</p>
 						<div>
-						  <input type="radio" name="AchatsVente" value="ouvertes" checked>
+						  <input type="radio" name="AchatsVente" value="enchereOuverte" checked>
 						  <label for="ouvertes">enchères ouvertes</label>
 						</div>
 						<div>
-						  <input type="radio" name="AchatsVente" value="enchereencours">
+						  <input type="radio" name="AchatsVente" value="enchereEnCours">
 						  <label for="enchereencours">mes enchères en cours</label>
 						</div>
 						<div>
-						  <input type="radio" name="AchatsVente" value="remporter">
+						  <input type="radio" name="AchatsVente" value="enchereremporter">
 						  <label for="remporter">mes enchères remportées</label>
 						</div>
 					</div>
@@ -66,11 +66,11 @@
 						  <label for="ventesencours">mes ventes en cours</label>
 						</div>
 						<div>
-						  <input type="radio" name="AchatsVente" value="débuter">
+						  <input type="radio" name="AchatsVente" value="venteNonDebute">
 						  <label for="débuter">ventes non débutées</label>
 						</div>
 						<div>
-						  <input type="radio" name="AchatsVente" value="terminer">
+						  <input type="radio" name="AchatsVente" value="venteTerminer">
 						  <label for="terminer">ventes terminèes</label>
 						</div>
 					</div>

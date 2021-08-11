@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import bo.Article;
-import bo.Enchere;
 import dal.DAOFactory;
 import dal.ListeEnchere;
 
@@ -69,6 +68,8 @@ public class ListeEnchereBLL {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println("---------------------------imdb--recherche--categorie");
+		System.out.println(listeNomArticle);
 		return listeNomArticle;
 	}
 
@@ -91,7 +92,6 @@ public class ListeEnchereBLL {
 		return listeMesVente;
 	}
 	
-	// TODO vvvv
 	// liste mes vente terminer
 	public List<Article> listeMesVenteTerminer(String vendeur, String recherche, String categorie) {
 		List<Article> listeMesVenteTerminer = new ArrayList<Article>();
@@ -102,7 +102,7 @@ public class ListeEnchereBLL {
 
 			} else {
 
-				listeMesVenteTerminer = listeEnchere.listeMesVente("terminer", vendeur, recherche, categorie);
+				listeMesVenteTerminer = listeEnchere.listeMesVenteCategorie("terminer", vendeur, recherche, categorie);
 			}
 
 		} catch (SQLException e) {
@@ -121,7 +121,7 @@ public class ListeEnchereBLL {
 
 			} else {
 
-				listeMesVenteNonDebute = listeEnchere.listeMesVente("non debuté", vendeur, recherche, categorie);
+				listeMesVenteNonDebute = listeEnchere.listeMesVenteCategorie("non debuté", vendeur, recherche, categorie);
 			}
 
 		} catch (SQLException e) {
@@ -132,50 +132,40 @@ public class ListeEnchereBLL {
 
 	// liste mes enchere en cours
 	public List<Article> listeMesEnchereEnCours(String pseudo, String recherche, String categorie) {
-		List<Article> liste = new ArrayList<Article>();
-		List<Enchere> Enchere = new ArrayList<Enchere>();
 		List<Article> listeMesEnchereEnCours = new ArrayList<Article>();
-		//TODO a modifier
 		try {
 			if (categorie == "tous") {
 
-				liste = listeEnchere.listeMesEnchereEnCours(pseudo, recherche);
+				listeMesEnchereEnCours = listeEnchere.listeMesEnchereEnCours(pseudo, recherche);
 
 			} else {
 
-				liste = listeEnchere.listeMesEnchereEnCours(pseudo, recherche, categorie);
+				listeMesEnchereEnCours = listeEnchere.listeMesEnchereEnCoursCategorie(pseudo, recherche, categorie);
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		/*
-		for (int i = 0; Enchere.size() > i; i++) {
-			for (int j = 0; liste.size() > j; j++) {
-				if (Enchere.get(i).getArticleEncherie().getNoArticle() == liste.get(j).getNoArticle()) {
-					listeMesEnchereEnCours.add(liste.get(i));
-				}
-			}
-		}*/
+
 		return listeMesEnchereEnCours;
 	}
 
 	// liste mes enchere remportée
 	public List<Article> listeMesVenteRemporte(String acheteur, String recherche, String categorie) {
-		List<Article> listeMesVenteNonDebute = new ArrayList<Article>();
+		List<Article> listeEnchereRemporter = new ArrayList<Article>();
 		try {
 			if (categorie == "tous") {
 
-				listeMesVenteNonDebute = listeEnchere.listeEnchereRemporter("terminer", acheteur, recherche);
+				listeEnchereRemporter = listeEnchere.listeEnchereRemporter("terminer", acheteur, recherche);
 
 			} else {
 
-				listeMesVenteNonDebute = listeEnchere.listeEnchereRemporter("terminer", acheteur, recherche, categorie);
+				listeEnchereRemporter = listeEnchere.listeEnchereRemporterCategorie("terminer", acheteur, recherche, categorie);
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return listeMesVenteNonDebute;
+		return listeEnchereRemporter;
 	}
 }

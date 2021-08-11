@@ -43,49 +43,58 @@ public class ServletListeEnchere extends HttpServlet {
 		String pseudo = (String) session.getAttribute("pseudo");
 		String categorie = request.getParameter("categorie");
 		String recherche = request.getParameter("recherche");
-		/*
-		 * TODO nom et categorie seulement nom et categorie et achats/vente
-		 **/
+		System.out.println("---------------------------servlet");
+		System.out.println(categorie);
+		System.out.println(recherche);
+
 		if (pseudo == null) {
 			if (categorie.equals("tous") && recherche.equals(null)) {
 
 				liste = b.listeEnchere();
+				System.out.println("---------------------------servlet--tous");
+				System.out.println(liste);
 
 			} else if (!categorie.equals("tous") && recherche.isBlank()) {
 
-				liste = b.listeCategorie(request.getParameter("categorie"));
+				liste = b.listeCategorie(categorie);
+				System.out.println("---------------------------servlet--categorie");
+				System.out.println(liste);
 
 			} else if (!recherche.isBlank() && categorie.equals("tous")) {
 
-				liste = b.listeNomArticle(request.getParameter("recherche"));
+				liste = b.listeNomArticle(recherche);
+				System.out.println("---------------------------servlet--rechercher");
+				System.out.println(liste);
 
 			} else if (!recherche.isBlank() && !categorie.equals("tous")) {
 
 				liste = b.listeNomEtCategorieArticle(recherche, categorie);
+				System.out.println("---------------------------servlet--categorie--recherche");
+				System.out.println(liste);
 			}
 		} else {
-			if (request.getParameter("mesVente").equals("venteEnCours")) {
+			if (request.getParameter("AchatsVente").equals("ventesencours")) {
 
 				liste = b.listeMesVenteEnCours(pseudo,recherche,categorie);
 
-			} else if (request.getParameter("mesVente").equals("venteNonDebute")) {
+			} else if (request.getParameter("AchatsVente").equals("venteNonDebute")) {
 
 				liste = b.listeMesVenteNonDebute(pseudo,recherche,categorie);
 
-			} else if (request.getParameter("achat").equals("venteRemporte")) {
+			} else if (request.getParameter("AchatsVente").equals("enchereremporter")) {
 
 				liste = b.listeMesVenteRemporte(pseudo,recherche,categorie);
 
-			} else if (request.getParameter("mesVente").equals("venteTerminer")) {
+			} else if (request.getParameter("AchatsVente").equals("venteTerminer")) {
 
 				liste = b.listeMesVenteTerminer(pseudo,recherche,categorie);
 
-			} else if (request.getParameter("achat").equals("enchereEnCours")) {
+			} else if (request.getParameter("AchatsVente").equals("enchereEnCours")) {
 
 				liste = b.listeMesEnchereEnCours(pseudo,recherche,categorie);
 			}
 
-			else if (request.getParameter("achat").equals("enchereOuverte")) {
+			else if (request.getParameter("AchatsVente").equals("enchereOuverte")) {
 
 				liste = b.listeEnchere();
 			}
@@ -94,7 +103,7 @@ public class ServletListeEnchere extends HttpServlet {
 		request.setAttribute("liste", liste);
 		System.out.println("---------------------------servlet");
 		System.out.println(liste);
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");// ?????
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");
 		rd.forward(request, response);
 
 	}
