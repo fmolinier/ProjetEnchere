@@ -68,8 +68,6 @@ public class ListeEnchereBLL {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("---------------------------imdb--recherche--categorie");
-		System.out.println(listeNomArticle);
 		return listeNomArticle;
 	}
 

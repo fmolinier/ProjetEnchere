@@ -10,6 +10,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ServletDetailEnchere
@@ -37,6 +38,7 @@ public class ServletDetailEnchere extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		GestionEnchereBLL e = new GestionEnchereBLL();
+		//TODO session 
 		Article a = new Article();
 		a = e.detailArticle(Integer.parseInt(request.getParameter("numero")));
 		request.setAttribute("numero",a.getNoArticle());
@@ -44,9 +46,12 @@ public class ServletDetailEnchere extends HttpServlet {
 		request.setAttribute("description", a.getDescription());
 		request.setAttribute("categorie", a.getCategorie().getLibelle());
 		request.setAttribute("enchere", a.getEnchere().getMontantEnchere());
-		request.setAttribute("pseudoenchere", a.getEnchere().getEnchereur().getPseudo());
+		if (a.getEnchere().getMontantEnchere() != 0) {	
+			request.setAttribute("pseudoenchere", a.getEnchere().getEnchereur().getPseudo());
+		}
 		request.setAttribute("prix", a.getMiseAPrix());
 		request.setAttribute("fin", a.getDateFin());
+		//TODO a ameliorer
 		request.setAttribute("retrait", a.getRetrait());
 		request.setAttribute("vendeur", a.getVendeur().getPseudo());
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/DetailEnchere.jsp");

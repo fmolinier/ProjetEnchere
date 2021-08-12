@@ -15,16 +15,16 @@ public class ListeEnchereJdbcImpl implements ListeEnchere {
 
 	private static final String SELECT_ListeEnchere = "SELECT * FROM ARTICLE_VENDU Where etat_vente = ?";
 	private static final String SELECT_listeMesEnchereEnCours = "SELECT * FROM ENCHERE  WHERE no_utilisateur = 2";
-	private static final String SELECT_ListeEnchereParNom = "SELECT * FROM ARTICLE_VENDU where etat_vente = ? AND nom_article like %?%";
-	private static final String SELECT_listeNomEtCategorie = "SELECT * FROM ARTICLE_VENDU where etat_vente = ? AND categorie= ? AND nom_article like '%?%'";
+	private static final String SELECT_ListeEnchereParNom = "SELECT * FROM ARTICLE_VENDU where etat_vente = ? AND nom_article like ?";
+	private static final String SELECT_listeNomEtCategorie = "SELECT * FROM ARTICLE_VENDU where etat_vente = ? AND no_categorie = ? AND nom_article like ?";
 	private static final String SELECT_ListeEnchereCategorie = "SELECT * FROM ARTICLE_VENDU Where etat_vente = ? AND no_categorie = ?";
-	private static final String SELECT_ListeMesVentes = "SELECT * FROM ARTICLE_VENDU Where etat_vente = ? AND no_vendeur = ? AND nom_article like '%?%'";
-	private static final String SELECT_ListeMesVentesCategorie = "SELECT * FROM ARTICLE_VENDU Where etat_vente = ? AND no_vendeur = ? AND no_categorie = ? AND nom_article like '%?%'";
+	private static final String SELECT_ListeMesVentes = "SELECT * FROM ARTICLE_VENDU Where etat_vente = ? AND no_vendeur = ? AND nom_article like ?";
+	private static final String SELECT_ListeMesVentesCategorie = "SELECT * FROM ARTICLE_VENDU Where etat_vente = ? AND no_vendeur = ? AND no_categorie = ? AND nom_article like ?";
 	private static final String SELECT_libelleCategorie = "SELECT no_categorie,libelle FROM Categorie WHERE no_categorie = ?";
-	private static final String SELECT_ListeEnchereRemporter = "SELECT * FROM ARTICLE_VENDU Where etat_vente = ? and no_acheteur = ? AND nom_article like '%?%'";
-	private static final String SELECT_ListeEnchereRemporterategorie = "SELECT * FROM ARTICLE_VENDU Where etat_vente = ? and no_acheteur = ? AND no_categorie = ? AND nom_article like '%?%'";
-	private static final String SELECT_listeArticle = "SELECT * FROM ARTICLE_VENDU Where no_article = ? and etat_vente = ? AND nom_article like '%?%'";
-	private static final String SELECT_listeArticleCategorie = "SELECT * FROM ARTICLE_VENDU Where no_article = ? and etat_vente = ? AND no_categorie = ? AND nom_article like '%?%'";
+	private static final String SELECT_ListeEnchereRemporter = "SELECT * FROM ARTICLE_VENDU Where etat_vente = ? and no_acheteur = ? AND nom_article like ?";
+	private static final String SELECT_ListeEnchereRemporterategorie = "SELECT * FROM ARTICLE_VENDU Where etat_vente = ? and no_acheteur = ? AND no_categorie = ? AND nom_article like ?";
+	private static final String SELECT_listeArticle = "SELECT * FROM ARTICLE_VENDU Where no_article = ? and etat_vente = ? AND nom_article like ?";
+	private static final String SELECT_listeArticleCategorie = "SELECT * FROM ARTICLE_VENDU Where no_article = ? and etat_vente = ? AND no_categorie = ? AND nom_article like ?";
 	private static final String SELECT_PseudoUtilisateur = "SELECT no_utilisateur,pseudo FROM UTILISATEUR WHERE no_utilisateur = ?";
 	private static final String SELECT_NoCategorie = "SELECT no_categorie,libelle FROM Categorie WHERE libelle = ?";
 	private static final String SELECT_NoUtilisateur = "SELECT no_utilisateur FROM UTILISATEUR WHERE pseudo = ?";
@@ -118,7 +118,9 @@ public class ListeEnchereJdbcImpl implements ListeEnchere {
 	public List<Article> listeNomArticle(String etatVente, String nom) throws SQLException {
 
 		List<Article> liste = new ArrayList<Article>();
-
+		String str = "%";
+		String name = str + nom + str;
+		
 		// connection à la BDD
 		Connection uneConnection = null;
 		uneConnection = JdbcTools.getConnection();
@@ -126,7 +128,7 @@ public class ListeEnchereJdbcImpl implements ListeEnchere {
 		// Requette à la BDD
 		PreparedStatement pstmt = uneConnection.prepareStatement(SELECT_ListeEnchereParNom);
 		pstmt.setString(1, etatVente);
-		pstmt.setString(2, nom);
+		pstmt.setString(2, name);
 		// Recuperation des données recupérer
 		ResultSet rs = pstmt.executeQuery();
 		while (rs.next()) {
@@ -156,13 +158,14 @@ public class ListeEnchereJdbcImpl implements ListeEnchere {
 
 	// liste via le nom de l'enchre et par categorie
 	@Override
-	public List<Article> listeNomEtCategorieArticle(String etatVente, String categorie, String nom)
-			throws SQLException {
+	public List<Article> listeNomEtCategorieArticle(String etatVente, String nom, String categorie) throws SQLException {
 
 		List<Article> liste = new ArrayList<Article>();
 		Categorie nc = new Categorie();
 		nc = NoCategorie(categorie);
-
+		String str = "%";
+		String name = str + nom + str;
+		
 		// connection à la BDD
 		Connection uneConnection = null;
 		uneConnection = JdbcTools.getConnection();
@@ -171,8 +174,8 @@ public class ListeEnchereJdbcImpl implements ListeEnchere {
 		PreparedStatement pstmt = uneConnection.prepareStatement(SELECT_listeNomEtCategorie);
 		pstmt.setString(1, etatVente);
 		pstmt.setInt(2, nc.getNoCategorie());
-		pstmt.setString(3, nom);
-
+		pstmt.setString(3, name);
+		
 		// Recuperation des données recupérer
 		ResultSet rs = pstmt.executeQuery();
 		while (rs.next()) {
@@ -197,8 +200,6 @@ public class ListeEnchereJdbcImpl implements ListeEnchere {
 		// Fermeture de la connexion
 		uneConnection.close();
 		
-		System.out.println("---------------------------imdb--recherche--categorie");
-		System.out.println(liste);
 		return liste;
 	}
 
@@ -209,7 +210,9 @@ public class ListeEnchereJdbcImpl implements ListeEnchere {
 		List<Article> liste = new ArrayList<Article>();
 		Utilisateur nu = new Utilisateur();
 		nu = noUtilisateur(vendeur);
-
+		String str = "%";
+		String name = str + recherche + str;
+		
 		// connection à la BDD
 		Connection uneConnection = null;
 		uneConnection = JdbcTools.getConnection();
@@ -218,7 +221,7 @@ public class ListeEnchereJdbcImpl implements ListeEnchere {
 		PreparedStatement pstmt = uneConnection.prepareStatement(SELECT_ListeMesVentes);
 		pstmt.setString(1, etatVente);
 		pstmt.setInt(2, nu.getNoUtilisateur());
-		pstmt.setString(3, recherche);
+		pstmt.setString(3, name);
 
 		// Recuperation des données recupérer
 		ResultSet rs = pstmt.executeQuery();
@@ -256,7 +259,9 @@ public class ListeEnchereJdbcImpl implements ListeEnchere {
 		nu = noUtilisateur(vendeur);
 		Categorie nc = new Categorie();
 		nc = NoCategorie(categorie);
-
+		String str = "%";
+		String name = str + recherche + str;
+		
 		// connection à la BDD
 		Connection uneConnection = null;
 		uneConnection = JdbcTools.getConnection();
@@ -266,7 +271,7 @@ public class ListeEnchereJdbcImpl implements ListeEnchere {
 		pstmt.setString(1, etatVente);
 		pstmt.setInt(2, nu.getNoUtilisateur());
 		pstmt.setInt(3, nc.getNoCategorie());
-		pstmt.setString(4, recherche);
+		pstmt.setString(4, name);
 
 		// Recuperation des données recupérer
 		ResultSet rs = pstmt.executeQuery();
@@ -300,7 +305,9 @@ public class ListeEnchereJdbcImpl implements ListeEnchere {
 	public List<Article> listeEnchereRemporter(String etatVente, String pseudo, String recherche) throws SQLException {
 
 		List<Article> liste = new ArrayList<Article>();
-
+		String str = "%";
+		String name = str + recherche + str;
+		
 		// connection à la BDD
 		Connection uneConnection = null;
 		uneConnection = JdbcTools.getConnection();
@@ -309,7 +316,7 @@ public class ListeEnchereJdbcImpl implements ListeEnchere {
 		PreparedStatement pstmt = uneConnection.prepareStatement(SELECT_ListeEnchereRemporter);
 		pstmt.setString(1, etatVente);
 		pstmt.setInt(2, noUtilisateur(pseudo).getNoUtilisateur());
-		pstmt.setString(3, recherche);
+		pstmt.setString(3, name);
 
 		// Recuperation des données recupérer
 		ResultSet rs = pstmt.executeQuery();
@@ -340,12 +347,13 @@ public class ListeEnchereJdbcImpl implements ListeEnchere {
 	}
 
 	@Override
-	public List<Article> listeEnchereRemporterCategorie(String etatVente, String pseudo, String recherche,
-			String categorie) throws SQLException {
+	public List<Article> listeEnchereRemporterCategorie(String etatVente, String pseudo, String recherche, String categorie) throws SQLException {
 
 		List<Article> liste = new ArrayList<Article>();
 		Categorie nc = new Categorie();
 		nc = NoCategorie(categorie);
+		String str = "%";
+		String name = str + recherche + str;
 
 		// connection à la BDD
 		Connection uneConnection = null;
@@ -356,7 +364,7 @@ public class ListeEnchereJdbcImpl implements ListeEnchere {
 		pstmt.setString(1, etatVente);
 		pstmt.setInt(2, noUtilisateur(pseudo).getNoUtilisateur());
 		pstmt.setInt(3, nc.getNoCategorie());
-		pstmt.setString(4, recherche);
+		pstmt.setString(4, name);
 
 		// Recuperation des données recupérer
 		ResultSet rs = pstmt.executeQuery();
@@ -391,6 +399,8 @@ public class ListeEnchereJdbcImpl implements ListeEnchere {
 
 		List<Article> liste = new ArrayList<Article>();
 		Article a = new Article();
+		String str = "%";
+		String name = str + recherche + str;
 
 		// connection à la BDD
 		Connection uneConnection = null;
@@ -403,7 +413,7 @@ public class ListeEnchereJdbcImpl implements ListeEnchere {
 		// Recuperation des données recupérer
 		ResultSet rs = pstmt.executeQuery();
 		while (rs.next()) {
-			a = article(rs.getInt("no_article"), "en cours", recherche);
+			a = article(rs.getInt("no_article"), "en cours", name);
 			liste.add(a);
 		}
 
@@ -422,15 +432,17 @@ public class ListeEnchereJdbcImpl implements ListeEnchere {
 		Article a = new Article();
 		Categorie c = new Categorie();
 		Utilisateur u = new Utilisateur();
-
+		String str = "%";
+		String name = str + recherche + str;
+		
 		// connection à la BDD
 		Connection uneConnectionUtilisateur = null;
 		uneConnectionUtilisateur = JdbcTools.getConnection();
 
-		PreparedStatement pstmt = uneConnectionUtilisateur.prepareStatement(SELECT_listeArticle);// SELECT_listeArticleCategorie
+		PreparedStatement pstmt = uneConnectionUtilisateur.prepareStatement(SELECT_listeArticle);
 		pstmt.setInt(1, noArticle);
 		pstmt.setString(2, etatVente);
-		pstmt.setString(3, recherche);
+		pstmt.setString(3, name);
 		rs = pstmt.executeQuery();
 		rs.next();
 		a.setNoArticle(rs.getInt("no_article"));
@@ -456,7 +468,8 @@ public class ListeEnchereJdbcImpl implements ListeEnchere {
 
 		List<Article> liste = new ArrayList<Article>();
 		Article a = new Article();
-
+		String str = "%";
+		String name = str + recherche + str;
 		// connection à la BDD
 		Connection uneConnection = null;
 		uneConnection = JdbcTools.getConnection();
@@ -468,7 +481,7 @@ public class ListeEnchereJdbcImpl implements ListeEnchere {
 		// Recuperation des données recupérer
 		ResultSet rs = pstmt.executeQuery();
 		while (rs.next()) {
-			a = articleCategorie(rs.getInt("no_article"), "en cours", recherche,categorie);
+			a = articleCategorie(rs.getInt("no_article"), "en cours", name,categorie);
 			liste.add(a);
 		}
 
@@ -486,6 +499,8 @@ public class ListeEnchereJdbcImpl implements ListeEnchere {
 		Article a = new Article();
 		Categorie c = new Categorie();
 		Utilisateur u = new Utilisateur();
+		String str = "%";
+		String name = str + recherche + str;
 
 		// connection à la BDD
 		Connection uneConnectionUtilisateur = null;
@@ -495,7 +510,7 @@ public class ListeEnchereJdbcImpl implements ListeEnchere {
 		pstmt.setInt(1, noArticle);
 		pstmt.setString(2, etatVente);
 		pstmt.setString(3, categorie);
-		pstmt.setString(4, recherche);
+		pstmt.setString(4, name);
 		
 		rs = pstmt.executeQuery();
 		rs.next();
@@ -564,6 +579,7 @@ public class ListeEnchereJdbcImpl implements ListeEnchere {
 	// recherche un numero categorie avec son libelle
 	@Override
 	public Categorie NoCategorie(String libelleCategorie) throws SQLException {
+		
 		ResultSet rs = null;
 		Categorie c = new Categorie();
 

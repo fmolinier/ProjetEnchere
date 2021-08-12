@@ -18,11 +18,13 @@
 			<label for="categorie">Categorie : </label>
 			<label id="categorie">${categorie}</label>
 			<br>
-			<label for="enchere">Meilleure offre : </label>
-			<label id="enchere">${enchere}</label>
-			<label id="pseudoenchere"> par 						
-				<a href='#' onclick='document.getElementById("pseudoEnchereur").submit()'>${pseudoenchere}</a>
-			</label>
+			<c:if test="${enchere != 0}">
+				<label for="enchere">Meilleure offre : </label>
+				<label id="enchere">${enchere}</label>
+				<label id="pseudoenchere"> par 						
+					<a href='#' onclick='document.getElementById("pseudoEnchereur").submit()'>${pseudoenchere}</a>
+				</label>
+			</c:if>
 			<br>
 			<label for="prix">Mise à prix : </label>
 			<label id="prix">${prix}</label>
@@ -34,7 +36,7 @@
 			<label id="retrait">${retrait}</label>
 			<br>
 			<label for="vendeur">Vendeur : </label>
-			<label name="vendeur">						
+			<label id="vendeur">						
 				<a href='#' onclick='document.getElementById("pseudoVendeur").submit()'>${vendeur}</a>
 			</label>
 			<br>
@@ -43,6 +45,9 @@
 				<input type="number" name="proposition">
 				<input type="submit" value="Enchérir">
 			</c:if>
+		</form>
+		<form id="pseudoEnchereur" action="<%=request.getContextPath()%>/Accueil">
+			<input type="submit" value="Accueil"/>
 		</form>
 		<form id="pseudoEnchereur" action="<%=request.getContextPath()%>/Profil">
 			<input type="hidden" name="pseudoEnchereur" value="${pseudoenchere}"/>

@@ -77,10 +77,14 @@ public class GestionEnchereDAOJdbcImpl implements GestionEnchereDAO {
 		pstmt.setInt(1, numeroArticle);
 		
 		rs = pstmt.executeQuery();
-		rs.next();
-		e.setMontantEnchere(rs.getInt("montant_enchere"));
-		u = pseudoUtilisateur(rs.getInt("no_utilisateur"));
-		e.setEnchereur(u);
+		if (rs.next() == true) {
+			e.setMontantEnchere( rs.getInt("montant_enchere"));
+			u = pseudoUtilisateur(rs.getInt("no_utilisateur"));
+			e.setEnchereur(u);
+		} else {
+			e.setMontantEnchere(0);
+		}
+		
 
 		return e;
 	}

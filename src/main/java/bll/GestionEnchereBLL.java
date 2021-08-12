@@ -19,7 +19,6 @@ public class GestionEnchereBLL {
 
 	// Récuperation des détails de l'article
 	public Article detailArticle(int noArticle) {
-
 		Article article = new Article();
 		try {
 			article = gestionEnchereDAO.Detail(noArticle);
