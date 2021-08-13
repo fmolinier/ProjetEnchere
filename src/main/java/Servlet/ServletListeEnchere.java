@@ -39,7 +39,6 @@ public class ServletListeEnchere extends HttpServlet {
 		String pseudo = (String) session.getAttribute("pseudo");
 		String categorie = request.getParameter("categorie");
 		String recherche = request.getParameter("recherche");
-
 		if (pseudo == null) {
 			if (categorie.equals("tous") && recherche.isBlank()) {
 
@@ -61,40 +60,32 @@ public class ServletListeEnchere extends HttpServlet {
 		} else {
 			if (request.getParameter("AchatsVente").equals("ventesencours")) {
 				
-				System.out.println("-------------------------------servlet--ventesencours");
 				liste = b.listeMesVenteEnCours(pseudo,recherche,categorie);
 
 			} else if (request.getParameter("AchatsVente").equals("venteNonDebute")) {
 				
-				System.out.println("-------------------------------servlet--venteNonDebute");
 				liste = b.listeMesVenteNonDebute(pseudo,recherche,categorie);
 
 			} else if (request.getParameter("AchatsVente").equals("enchereremporter")) {
 				
-				System.out.println("-------------------------------servlet--enchereremporter");
 				liste = b.listeMesVenteRemporte(pseudo,recherche,categorie);
 
 			} else if (request.getParameter("AchatsVente").equals("venteTerminer")) {
 				
-				System.out.println("-------------------------------servlet--venteTerminer");
 				liste = b.listeMesVenteTerminer(pseudo,recherche,categorie);
 
 			} else if (request.getParameter("AchatsVente").equals("enchereEnCours")) {
 				
-				System.out.println("-------------------------------servlet--enchereEnCours");
 				liste = b.listeMesEnchereEnCours(pseudo,recherche,categorie);
 			}
 
 			else if (request.getParameter("AchatsVente").equals("enchereOuverte")) {
 				
-				System.out.println("-------------------------------servlet--enchereOuverte");
 				liste = b.listeEnchere();
 			}
 		}
 
 		request.setAttribute("liste", liste);
-		System.out.println("---------------------------servlet");
-		System.out.println(liste);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");
 		rd.forward(request, response);
 

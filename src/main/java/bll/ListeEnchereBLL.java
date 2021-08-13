@@ -36,7 +36,7 @@ public class ListeEnchereBLL {
 		List<Article> listeCategorie = new ArrayList<Article>();
 
 		try {
-			if (categorie == "tous") {
+			if (categorie.equals("tous")) {
 				listeCategorie = listeEnchere.listeArticleVendu("en cours");
 			} else {
 				listeCategorie = listeEnchere.listeArticleCategorie("en cours", categorie);
@@ -75,7 +75,7 @@ public class ListeEnchereBLL {
 	public List<Article> listeMesVenteEnCours(String vendeur, String recherche, String categorie) {
 		List<Article> listeMesVente = new ArrayList<Article>();
 		try {
-			if (categorie == "tous") {
+			if (categorie.equals("tous")) {
 
 				listeMesVente = listeEnchere.listeMesVente("en cours", vendeur, recherche);
 
@@ -94,7 +94,7 @@ public class ListeEnchereBLL {
 	public List<Article> listeMesVenteTerminer(String vendeur, String recherche, String categorie) {
 		List<Article> listeMesVenteTerminer = new ArrayList<Article>();
 		try {
-			if (categorie == "tous") {
+			if (categorie.equals("tous")) {
 
 				listeMesVenteTerminer = listeEnchere.listeMesVente("terminer", vendeur, recherche);
 
@@ -113,7 +113,7 @@ public class ListeEnchereBLL {
 	public List<Article> listeMesVenteNonDebute(String vendeur, String recherche, String categorie) {
 		List<Article> listeMesVenteNonDebute = new ArrayList<Article>();
 		try {
-			if (categorie == "tous") {
+			if (categorie.equals("tous")) {
 
 				listeMesVenteNonDebute = listeEnchere.listeMesVente("non debuté", vendeur, recherche);
 
@@ -132,7 +132,7 @@ public class ListeEnchereBLL {
 	public List<Article> listeMesEnchereEnCours(String pseudo, String recherche, String categorie) {
 		List<Article> listeMesEnchereEnCours = new ArrayList<Article>();
 		try {
-			if (categorie == "tous") {
+			if (categorie.equals("tous")) {
 
 				listeMesEnchereEnCours = listeEnchere.listeMesEnchereEnCours(pseudo, recherche);
 
@@ -152,8 +152,8 @@ public class ListeEnchereBLL {
 	public List<Article> listeMesVenteRemporte(String acheteur, String recherche, String categorie) {
 		List<Article> listeEnchereRemporter = new ArrayList<Article>();
 		try {
-			if (categorie == "tous") {
-
+			if (categorie.equals("tous")) {
+				
 				listeEnchereRemporter = listeEnchere.listeEnchereRemporter("terminer", acheteur, recherche);
 
 			} else {

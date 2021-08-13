@@ -67,7 +67,7 @@ public class ServletNouvelleEnchere extends HttpServlet {
 		r.setVilleRetrait(request.getParameter("ville"));
 		a.setRetrait(r);
 		e.ajouterArticle(a,(String) session.getAttribute("pseudo") ,request.getParameter("categorie"));
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/Accueil");
 		rd.forward(request, response);
 
 	}

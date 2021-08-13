@@ -16,29 +16,29 @@
 			<textarea name="description" disabled="disabled">${description}</textarea>
 			<br>
 			<label for="categorie">Categorie : </label>
-			<label id="categorie">${categorie}</label>
+			<p id="categorie">${categorie}</p>
 			<br>
 			<c:if test="${enchere != 0}">
 				<label for="enchere">Meilleure offre : </label>
-				<label id="enchere">${enchere}</label>
-				<label id="pseudoenchere"> par 						
+				<p id="enchere">${enchere}</p>
+				<p id="pseudoenchere"> par 						
 					<a href='#' onclick='document.getElementById("pseudoEnchereur").submit()'>${pseudoenchere}</a>
-				</label>
+				</p>
 			</c:if>
 			<br>
 			<label for="prix">Mise à prix : </label>
-			<label id="prix">${prix}</label>
+			<p id="prix">${prix}</p>
 			<br>
 			<label for="fin">Fin de l'enchère : </label>
-			<label id="fin">${fin}</label>
+			<p id="fin">${fin}</p>
 			<br>
 			<label for="retrait">Retrait : </label>
-			<label id="retrait">${retrait}</label>
+			<p id="retrait">${retrait}</p>
 			<br>
 			<label for="vendeur">Vendeur : </label>
-			<label id="vendeur">						
+			<p id="vendeur">						
 				<a href='#' onclick='document.getElementById("pseudoVendeur").submit()'>${vendeur}</a>
-			</label>
+			</p>
 			<br>
 			<c:if test="${!empty sessionScope.pseudo}">
 				<label for="proposition">Ma proposition : </label>

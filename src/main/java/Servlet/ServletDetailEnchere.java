@@ -1,7 +1,6 @@
 package Servlet;
 
 import java.io.IOException;
-
 import bll.GestionEnchereBLL;
 import bo.Article;
 import jakarta.servlet.RequestDispatcher;
@@ -10,7 +9,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ServletDetailEnchere
@@ -51,8 +49,9 @@ public class ServletDetailEnchere extends HttpServlet {
 		}
 		request.setAttribute("prix", a.getMiseAPrix());
 		request.setAttribute("fin", a.getDateFin());
-		//TODO a ameliorer
-		request.setAttribute("retrait", a.getRetrait());
+		request.setAttribute("rue", a.getRetrait().getRueRetrait());
+		request.setAttribute("codepostal", a.getRetrait().getCodePostalRetrait());
+		request.setAttribute("ville", a.getRetrait().getVilleRetrait());
 		request.setAttribute("vendeur", a.getVendeur().getPseudo());
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/DetailEnchere.jsp");
 		rd.forward(request, response);
