@@ -81,7 +81,7 @@
 				<form action="<%=request.getContextPath()%>/Detail" method="post">
 					<div class="border border-info">
 						<input id="numero" name="numero" type="hidden" value="${article.noArticle }">
-						<p id="nom">${article.nomArticle}</p>
+						<h4 id="nom">${article.nomArticle}</h4>
 						<label for="prix">Prix : </label>
    						<p id="prix">${article.miseAPrix}</p>
 						<label for="fin">Fin de l'enchére : </label>

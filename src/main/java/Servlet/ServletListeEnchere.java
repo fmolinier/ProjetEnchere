@@ -84,7 +84,7 @@ public class ServletListeEnchere extends HttpServlet {
 				liste = b.listeEnchere();
 			}
 		}
-
+		System.out.println(liste);
 		request.setAttribute("liste", liste);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");
 		rd.forward(request, response);

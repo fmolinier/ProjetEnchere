@@ -34,6 +34,8 @@ public class ServletAccueil extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
 		ListeEnchereBLL b = new ListeEnchereBLL();
 		List<Article> liste = new ArrayList<Article>();
+		//TODO faire mise a jours etat vente / ? trigger BDD 
+		//TODO page internet sur navigateur (chrome)
 		liste = b.listeEnchere();
 		request.setAttribute("liste", liste);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");

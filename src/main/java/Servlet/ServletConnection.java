@@ -37,7 +37,7 @@ public class ServletConnection extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		GestionUtilisateurBLL b = new GestionUtilisateurBLL();
-		Utilisateur u = new Utilisateur();;
+		Utilisateur u = new Utilisateur();
 		u = b.Connection(request.getParameter("identifiant"), request.getParameter("motdepasse"));
 		// Verification si l'utilisateur existe ou non
 		if (u.getPseudo() != null || u.getEmail() != null) {

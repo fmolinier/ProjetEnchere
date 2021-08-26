@@ -94,7 +94,7 @@ public class GestionUtilisateurJdbcImpl implements GestionUtilisateur{
 		//connection à la BDD
 		uneConnection = JdbcTools.getConnection();
 		//Requette à la BDD
-		if (type == "pseudo") {
+		if (type.equals("pseudo")) {
 			
 			PreparedStatement pstmt = uneConnection.prepareStatement(SELECT_ConnectionPseudo);
 			pstmt.setString(1,connection.getPseudo());
@@ -103,11 +103,12 @@ public class GestionUtilisateurJdbcImpl implements GestionUtilisateur{
 			
 			//Recuperation des données recupérer
 			rs.next();
-			Utilisateur.setNoUtilisateur(Integer.parseInt(rs.getString("no_utilisateur")));
+			Utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
 			Utilisateur.setPseudo(rs.getString("pseudo"));
+			Utilisateur.setEmail(rs.getString("email"));
 			Utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
 			
-		}else if(type == "email") {
+		}else if(type.equals("email")) {
 			
 			PreparedStatement pstmt = uneConnection.prepareStatement(SELECT_ConnectionEmail);
 			pstmt.setString(1,connection.getEmail());
@@ -116,8 +117,9 @@ public class GestionUtilisateurJdbcImpl implements GestionUtilisateur{
 			
 			//Recuperation des données recupérer
 			rs.next();
-			Utilisateur.setNoUtilisateur(Integer.parseInt("no_utilisateur"));
+			Utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
 			Utilisateur.setEmail(rs.getString("email"));
+			Utilisateur.setPseudo(rs.getString("pseudo"));
 			Utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
 		}
 		
