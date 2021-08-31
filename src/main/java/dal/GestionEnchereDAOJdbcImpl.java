@@ -27,6 +27,8 @@ public class GestionEnchereDAOJdbcImpl implements GestionEnchereDAO {
 	private static final String DELETE_Enchere = "DELETE FROM ARTICLE_VENDU WHERE no_Article = ?";
 	private static final String UPDATE_Enchere = "UPDATE ARTICLE_VENDU SET nom_article = ?, description = ?,date_debut_encheres = ?,date_fin_encheres = ?,mise_a_prix = ?,no_categorie = ? WHERE no_Article = ?";
 	private static final String Montant_Max_Enchere = "SELECT montant_enchere,no_utilisateur FROM ENCHERE where no_article = ? ORDER BY montant_enchere DESC";
+	private static final String SELECT_lieuxRetrait = "SELECT * FROM RETRAIT WHERE no_article = ?";
+
 	
 	//TODO enchere remporter
 	@Override
@@ -36,6 +38,7 @@ public class GestionEnchereDAOJdbcImpl implements GestionEnchereDAO {
 		Categorie c = new Categorie();
 		Utilisateur u = new Utilisateur();
 		Enchere e = new Enchere();
+		Retrait r = new Retrait();
 		// connection à la BDD
 		Connection uneConnectionUtilisateur = JdbcTools.getConnection();
 
@@ -57,12 +60,36 @@ public class GestionEnchereDAOJdbcImpl implements GestionEnchereDAO {
 		a.setEtatVente(rs.getString("etat_vente"));
 		e = meillereEnchere(rs.getInt("no_article"));
 		a.setEnchere(e);
+		r = lieuxRetrait(rs.getInt("no_article"));
+		a.setRetrait(r);
+		
 		// Fermeture de la connexion
 		uneConnectionUtilisateur.close();
 		
 		return a;
 	}
+	
+	//lieux du retrait de l'enchere
+	private Retrait lieuxRetrait(int numeroArticle) throws SQLException {
+		ResultSet rs = null;
+		Retrait r = new Retrait();
 
+		// connection à la BDD
+		Connection uneConnectionUtilisateur = JdbcTools.getConnection();
+
+		// Requête à la BDD
+		PreparedStatement pstmt = uneConnectionUtilisateur.prepareStatement(SELECT_lieuxRetrait);
+		pstmt.setInt(1, numeroArticle);
+		
+		rs = pstmt.executeQuery();
+		rs.next();
+		r.setRueRetrait(rs.getString("rue"));
+		r.setCodePostalRetrait(rs.getInt("code_postal"));
+		r.setRueRetrait(rs.getString("ville"));
+
+		return r;
+	}
+	
 	//meillere enchere
 	private Enchere meillereEnchere(int numeroArticle) throws SQLException {
 		ResultSet rs = null;
@@ -239,7 +266,6 @@ public class GestionEnchereDAOJdbcImpl implements GestionEnchereDAO {
 
 	}
 
-	// retrait ?
 	@Override
 	public Article modifierArticles(Article article) throws SQLException {
 		// Connection à la BDD

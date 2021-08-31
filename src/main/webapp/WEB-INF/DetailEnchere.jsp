@@ -32,8 +32,17 @@
 			<label for="fin">Fin de l'enchère : </label>
 			<p id="fin">${fin}</p>
 			<br>
-			<label for="retrait">Retrait : </label>
-			<p id="retrait">${retrait}</p>
+			<div>
+				<h3>Retrait</h3>
+				<label for="retrait">rue : </label>
+				<p id="retrait">${rue}</p>
+				<br>
+				<label for="retrait">Code postal : </label>
+				<p id="retrait">${codepostal}</p>
+				<br>
+				<label for="retrait">Ville : </label>
+				<p id="retrait">${ville}</p>
+			</div>
 			<br>
 			<label for="vendeur">Vendeur : </label>
 			<p id="vendeur">						
