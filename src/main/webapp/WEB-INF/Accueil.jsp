@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="ISO-8859-1"> 
 		<title>Accueil</title>
-		<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.css" >
 	</head>
 	<body>
 		<header>
@@ -30,7 +30,7 @@
 				</c:when>
 			</c:choose>
 			<div>
-				<h1>Liste des encheres</h1>
+				<h1 class="text-center">Liste des enchéres</h1>
 			</div>
 		</header>
 		<main>
@@ -79,19 +79,16 @@
 			</form>
 			<c:forEach var="article" items="${liste}">
 				<form action="<%=request.getContextPath()%>/Detail" method="post">
-					<div class="border border-info">
-						<input id="numero" name="numero" type="hidden" value="${article.noArticle }">
-						<h4 id="nom">${article.nomArticle}</h4>
-						<label for="prix">Prix : </label>
-   						<p id="prix">${article.miseAPrix}</p>
-						<label for="fin">Fin de l'enchére : </label>
-						<p id="fin">${article.dateFin}</p>
-						<label for="vender">Vendeur : </label>
-						<label id="vender"> 						
-							<a href='#' onclick='document.getElementById("pseudo").submit()'>${article.vendeur.pseudo}</a>
-						</label>
-						<br>
-						<input type="submit" Value="Detail">
+					<div class="card" style="width: 18rem;">
+						<div class="card-body">
+							<input id="numero" name="numero" type="hidden" value="${article.noArticle }">
+							<h4 id="nom">${article.nomArticle}</h4>
+							<p id="prix">Prix : ${article.miseAPrix}</p>
+							<p id="fin">Fin de l'enchére : ${article.dateFin}</p>
+							<p id="vender">Vendeur : <a href='#' onclick='document.getElementById("pseudo").submit()'>${article.vendeur.pseudo}</a></p>
+							<br>
+							<input type="submit" Value="Detail">
+						</div>
 					</div>
 				</form>
 				<form id="pseudo" action="<%=request.getContextPath()%>/Profil">

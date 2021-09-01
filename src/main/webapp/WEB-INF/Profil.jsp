@@ -15,29 +15,21 @@
 			</div>
 		</c:if>
 		<c:if test="${empty sessionScope.pseudo}">
-			<label for="pseudo">Pseudo : </label>
-			<label id="pseudo">${pseudo}</label>
+			<p id="pseudo">Pseudo : ${pseudo}</p>
 			<br>
-			<label for="nom">Nom : </label>
-			<label id="nom">${nom}</label>
+			<p id="nom">Nom : ${nom}</p>
 			<br>
-			<label for="prenom">Prenom : </label>
-			<label id="prenom" >${prenom}</label>
+			<p id="prenom">Prenom : ${prenom}</p>
 			<br>
-			<label for="email">E-mail : </label>
-			<label id="email" >${email}</label>
+			<p id="email">E-mail : ${email}</p>
 			<br>
-			<label for="telephone">Téléphone : </label>
-			<label id="telephone">${telephone}</label>
+			<p id="telephone">Téléphone : ${telephone}</p>
 			<br>
-			<label for="rue">Rue : </label>
-			<label id="rue">${rue}</label>
+			<p id="rue">Rue : ${rue}</p>
 			<br>
-			<label for="codepostal">Code Postal : </label>
-			<label id="codepostal">${codepostal}</label>
+			<p id="codepostal">Code Postal : ${codepostal}</p>
 			<br>
-			<label for="ville">Ville : </label>
-			<label id="ville">${ville}</label>
+			<p id="ville">Ville : ${ville}</p>
 		</c:if>
 		<c:if test="${!empty sessionScope.pseudo}">	
 			<form name="profil" action="<%=request.getContextPath()%>/modifier" method="post">

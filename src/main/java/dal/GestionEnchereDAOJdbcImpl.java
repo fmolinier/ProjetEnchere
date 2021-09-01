@@ -85,7 +85,7 @@ public class GestionEnchereDAOJdbcImpl implements GestionEnchereDAO {
 		rs.next();
 		r.setRueRetrait(rs.getString("rue"));
 		r.setCodePostalRetrait(rs.getInt("code_postal"));
-		r.setRueRetrait(rs.getString("ville"));
+		r.setVilleRetrait(rs.getString("ville"));
 
 		return r;
 	}

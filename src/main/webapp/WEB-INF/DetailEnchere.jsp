@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Detail</title>
-		<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	</head>
 	<body>
 		<h1>Detail vente</h1>
@@ -14,41 +14,23 @@
 			<input name="numero" name="numero" type="hidden" value="${numeroArticle}">
 			<label for="description">Description : </label>
 			<textarea name="description" disabled="disabled">${description}</textarea>
-			<br>
-			<label for="categorie">Categorie : </label>
-			<p id="categorie">${categorie}</p>
-			<br>
+			<p id="categorie">Categorie : ${categorie}</p>
 			<c:if test="${enchere != 0}">
-				<label for="enchere">Meilleure offre : </label>
-				<p id="enchere">${enchere}</p>
-				<p id="pseudoenchere"> par 						
+				<p id="enchere">Meilleure offre : ${enchere} par 						
 					<a href='#' onclick='document.getElementById("pseudoEnchereur").submit()'>${pseudoenchere}</a>
 				</p>
 			</c:if>
-			<br>
-			<label for="prix">Mise à prix : </label>
-			<p id="prix">${prix}</p>
-			<br>
-			<label for="fin">Fin de l'enchère : </label>
-			<p id="fin">${fin}</p>
-			<br>
+			<p id="prix">Mise à prix : ${prix} </p>
+			<p id="fin">Fin de l'enchère : ${fin}</p>
 			<div>
 				<h3>Retrait</h3>
-				<label for="retrait">rue : </label>
-				<p id="retrait">${rue}</p>
-				<br>
-				<label for="retrait">Code postal : </label>
-				<p id="retrait">${codepostal}</p>
-				<br>
-				<label for="retrait">Ville : </label>
-				<p id="retrait">${ville}</p>
+				<p id="rue">rue : ${rue}</p>
+				<p id="codepostal">Code postal : ${codepostal}</p>
+				<p id="ville">Ville : ${ville}</p>
 			</div>
-			<br>
-			<label for="vendeur">Vendeur : </label>
 			<p id="vendeur">						
-				<a href='#' onclick='document.getElementById("pseudoVendeur").submit()'>${vendeur}</a>
+				Vendeur : <a href='#' onclick='document.getElementById("pseudoVendeur").submit()'>${vendeur}</a>
 			</p>
-			<br>
 			<c:if test="${!empty sessionScope.pseudo}">
 				<label for="proposition">Ma proposition : </label>
 				<input type="number" name="proposition">
