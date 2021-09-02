@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Profil</title>
-		<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	</head>
 	<body>
 		<c:if test="${!empty erreur}">
@@ -15,21 +15,18 @@
 			</div>
 		</c:if>
 		<c:if test="${empty sessionScope.pseudo}">
+		<div class="text-center text-justify">
+			<h1>Profil</h1>
+			<br>
 			<p id="pseudo">Pseudo : ${pseudo}</p>
-			<br>
 			<p id="nom">Nom : ${nom}</p>
-			<br>
 			<p id="prenom">Prenom : ${prenom}</p>
-			<br>
 			<p id="email">E-mail : ${email}</p>
-			<br>
 			<p id="telephone">Téléphone : ${telephone}</p>
-			<br>
 			<p id="rue">Rue : ${rue}</p>
-			<br>
 			<p id="codepostal">Code Postal : ${codepostal}</p>
-			<br>
 			<p id="ville">Ville : ${ville}</p>
+		</div>	
 		</c:if>
 		<c:if test="${!empty sessionScope.pseudo}">	
 			<form name="profil" action="<%=request.getContextPath()%>/modifier" method="post">
