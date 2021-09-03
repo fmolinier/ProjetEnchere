@@ -6,34 +6,19 @@
 		<meta charset="ISO-8859-1"> 
 		<title>Accueil</title>
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.css" >
+		<!-- <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/jquery" src="bootstrap/js/jquery-3.3.1.slim.min.js"></script>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script> -->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	</head>
+	<%@ include file="./fragments/header.html" %>
 	<body>
-		<header>
-			<c:choose>
-				<c:when test="${empty sessionScope.pseudo}">
-					<div>
-						<img alt="logo" src="">
-						<a class="text-right" href="<%=request.getContextPath()%>/inscription">S'inscrire</a>
-						<a class="text-right" href="<%=request.getContextPath()%>/connection">Se connecter</a>
-					</div>
-				</c:when>
-				<c:when test="${!empty sessionScope.pseudo}">
-					<div>
-						<img alt="logo" src="">
-						<a href="<%=request.getContextPath()%>/NouvelleEnchere">Vendre un article</a>
-						<form id="monpseudo" action="<%=request.getContextPath()%>/MonProfil">
-							<input type="hidden" name="pseudoUtilisateur" value="${sessionScope.pseudo}"/>
-						</form>
-						<a href='#' onclick='document.getElementById("monpseudo").submit()'>Mon profil</a>
-						<a href="<%=request.getContextPath()%>/Deconnection">Deconnexion</a>
-					</div>
-				</c:when>
-			</c:choose>
-			<div>
+		<main>
+			<div class="mt-md-2">
 				<h1 class="text-center">Liste des enchères</h1>
 			</div>
-		</header>
-		<main>
 			<div class="ms-md-2">
 				<form action="<%=request.getContextPath()%>/recherche" method="post">
 					<input type="search" name="recherche">
@@ -82,22 +67,19 @@
 			<br>
 			<div class="d-flex justify-content-between ms-md-2">
 				<c:forEach var="article" items="${liste}">
-					<form action="<%=request.getContextPath()%>/Detail" method="post">
-						<div class="card me-md-2" style="width: 18rem;">
-							<div class="card-body">
+					<div class="card me-md-2" style="width: 18rem;">
+						<div class="card-body">
+							<form action="<%=request.getContextPath()%>/Detail" method="post">
 								<input id="numero" name="numero" type="hidden" value="${article.noArticle }">
 								<h4 id="nom">${article.nomArticle}</h4>
 								<p id="prix">Prix : ${article.miseAPrix}</p>
 								<p id="fin">Fin de l'enchère : ${article.dateFin}</p>
-								<p id="vender">Vendeur : <a href='#' onclick='document.getElementById("pseudo").submit()'>${article.vendeur.pseudo}</a></p>
+								<p id="vendeur">Vendeur : <a href="<%=request.getContextPath()%>/Profil?pseudoVendeur=${article.vendeur.pseudo}">${article.vendeur.pseudo}</a></p>
 								<br>
 								<input type="submit" Value="Detail">
-							</div>
+							</form>
 						</div>
-					</form>
-					<form id="pseudo" action="<%=request.getContextPath()%>/Profil">
-						<input type="hidden" name="pseudoVendeur" value="${article.vendeur.pseudo}"/>
-					</form>
+					</div>
 				</c:forEach>
 			</div>
 		</main>
