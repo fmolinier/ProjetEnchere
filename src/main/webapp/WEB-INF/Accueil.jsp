@@ -30,48 +30,50 @@
 						<option value="Sport & loisir">Sport/Loisir</option>
 					</select>
 					<c:if test="${!empty sessionScope.pseudo}">
-						<div>
-							<p>Achats</p>
-							<div>
-							  <input type="radio" name="AchatsVente" value="enchereOuverte" checked>
-							  <label for="ouvertes">enchères ouvertes</label>
+						<div class="d-flex ms-md-2 mt-md-2">
+							<div class="me-md-2">
+								<p class="ms-md-2 mt-md-2">Achats</p>
+								<div >
+								  <input type="radio" name="AchatsVente" value="enchereOuverte" checked>
+								  <label for="ouvertes">enchères ouvertes</label>
+								</div>
+								<div>
+								  <input type="radio" name="AchatsVente" value="enchereEnCours">
+								  <label for="enchereencours">mes enchères en cours</label>
+								</div>
+								<div>
+								  <input type="radio" name="AchatsVente" value="enchereremporter">
+								  <label for="remporter">mes enchères remportées</label>
+								</div>
 							</div>
-							<div>
-							  <input type="radio" name="AchatsVente" value="enchereEnCours">
-							  <label for="enchereencours">mes enchères en cours</label>
-							</div>
-							<div>
-							  <input type="radio" name="AchatsVente" value="enchereremporter">
-							  <label for="remporter">mes enchères remportées</label>
-							</div>
-						</div>
-						<div>
-							<p>Mes ventes</p>
-							<div>
-							  <input type="radio" name="AchatsVente" value="ventesencours">
-							  <label for="ventesencours">mes ventes en cours</label>
-							</div>
-							<div>
-							  <input type="radio" name="AchatsVente" value="venteNonDebute">
-							  <label for="débuter">ventes non débutées</label>
-							</div>
-							<div>
-							  <input type="radio" name="AchatsVente" value="venteTerminer">
-							  <label for="terminer">ventes terminèes</label>
+							<div class="me-md-2">
+								<p class="ms-md-2 mt-md-2">Mes ventes</p>
+								<div>
+								  <input type="radio" name="AchatsVente" value="ventesencours">
+								  <label for="ventesencours">mes ventes en cours</label>
+								</div>
+								<div>
+								  <input type="radio" name="AchatsVente" value="venteNonDebute">
+								  <label for="débuter">ventes non débutées</label>
+								</div>
+								<div>
+								  <input type="radio" name="AchatsVente" value="venteTerminer">
+								  <label for="terminer">ventes terminèes</label>
+								</div>
 							</div>
 						</div>
 					</c:if>
-					<input type="submit" Value="Rechercher">
+					<input class="mt-md-2" type="submit" Value="Rechercher">
 				</form>
 			</div>
 			<br>
-			<div class="d-flex justify-content-between ms-md-2">
+			<div class="d-flex ms-md-2">
 				<c:forEach var="article" items="${liste}">
 					<div class="card me-md-2" style="width: 18rem;">
-						<div class="card-body">
+						<div class="card-body border border-dark">
 							<form action="<%=request.getContextPath()%>/Detail" method="post">
 								<input id="numero" name="numero" type="hidden" value="${article.noArticle }">
-								<h4 id="nom">${article.nomArticle}</h4>
+								<h4 class="card-title" id="nom">${article.nomArticle}</h4>
 								<p id="prix">Prix : ${article.miseAPrix}</p>
 								<p id="fin">Fin de l'enchère : ${article.dateFin}</p>
 								<p id="vendeur">Vendeur : <a href="<%=request.getContextPath()%>/Profil?pseudoVendeur=${article.vendeur.pseudo}">${article.vendeur.pseudo}</a></p>

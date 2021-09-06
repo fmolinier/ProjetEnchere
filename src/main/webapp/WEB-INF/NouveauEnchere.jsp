@@ -11,7 +11,7 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	</head>
 	<header>
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<nav class="navbar navbar-expand-lg navbar-light bg-info">
 				<a class="navbar-brand" href="<%=request.getContextPath()%>/Accueil"> 
 					<img src="#" alt="logo" width="30" height="30" alt="">
 				</a>
@@ -20,58 +20,70 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 					<div class="navbar-nav">
-						<a class="ms-md-2" href="<%=request.getContextPath()%>/NouvelleEnchere">Vendre un article</a>
+						<a class="nav-link ms-md-2 text-dark" href="<%=request.getContextPath()%>/NouvelleEnchere">Vendre un article</a>
 						<form id="monpseudo" action="<%=request.getContextPath()%>/MonProfil">
 							<input type="hidden" name="pseudoUtilisateur" value="${sessionScope.pseudo}" />
 						</form>
-						<a class="ms-md-2" href='#' onclick='document.getElementById("monpseudo").submit()'>Mon profil</a> 
-						<a class="ms-md-2" href="<%=request.getContextPath()%>/Deconnection">Deconnexion</a>
+						<a class="nav-link ms-md-2 text-dark" href='#' onclick='document.getElementById("monpseudo").submit()'>Mon profil</a> 
+						<a class="nav-link ms-md-2 text-dark" href="<%=request.getContextPath()%>/Deconnection">Deconnexion</a>
 					</div>
 				</div>
 			</nav>
 	</header>
 	<body>
-		<h1>Nouvelle Enchere</h1>
-		<form action="<%=request.getContextPath()%>/NouvelleEnchere" method="post">
-			<label for="nom">nom</label> 
-			<input name="nom" type="text"> 
-			<br>
-			<label for="description">description</label>
-			<textarea name="description" rows="5" cols="33"></textarea>
-			<br>
-			<label for="categorie">catégorie</label> 
-			<select name="categorie">
-				<option value="">--choisiessez une option--</option>
-				<option value="Informatique">Informatique</option>
-				<option value="Ameublement">Ameublement</option>
-				<option value="Vêtement">Vêtement</option>
-				<option value="Sport & loisir">Sport/Loisir</option>
-			</select> 
-			<br>
-			<label for="prix">Mise à prix</label> 
-			<input name="prix" type="text">
-			<br>
-			<label for="debut">Date debut</label> 
-			<input type="date" name="debut">
-			<br>
-			<label for="fin">Date fin</label> 
-			<input type="date" name="fin">
-			<br>
-			<div>
-				<h2>Retrait</h2>
-				<br>
-				<label for="rue">Rue</label> 
-				<input name="rue" type="text"> 
-				<br>
-				<label for="codepostal">Code Postal</label>
-				<input name="codepostal" type="text"> 
-				<br>
-				<label for="ville">Ville</label> 
-				<input name="ville" type="text">
-			</div>
-			<br>
-			<input type="submit" value="Enregistrer">
-		</form>
-		<a href="Accueil.jsp"><button>Anuller</button></a>
+		<h1 class="text-center">Nouvelle Enchere</h1>
+		<div class="mt-md-2 d-flex justify-content-around">
+			<form action="<%=request.getContextPath()%>/NouvelleEnchere" method="post">
+				<div class="mt-md-2 d-flex justify-content-around">
+					<label for="nom">nom : </label> 
+					<input name="nom" type="text"> 
+				</div>
+				<div class="mt-md-2 d-flex justify-content-around">
+					<label for="description">description : </label>
+					<textarea class="mt-md-2" name="description" rows="5" cols="33"></textarea>
+				</div>
+				<div class="mt-md-2 d-flex justify-content-around">
+					<label for="categorie">catégorie : </label> 
+					<select name="categorie">
+						<option value="">--choisiessez une option--</option>
+						<option value="Informatique">Informatique</option>
+						<option value="Ameublement">Ameublement</option>
+						<option value="Vêtement">Vêtement</option>
+						<option value="Sport & loisir">Sport/Loisir</option>
+					</select>
+				</div>
+				<div class="mt-md-2 d-flex justify-content-around">
+					<label for="prix">Mise à prix : </label> 
+					<input name="prix" type="text">
+				</div>
+				<div class="mt-md-2 d-flex justify-content-around">
+					<label for="debut">Date debut : </label> 
+					<input type="date" name="debut">
+				</div>
+				<div class="mt-md-2 d-flex justify-content-around">
+					<label for="fin">Date fin : </label> 
+					<input type="date" name="fin">
+				</div>
+				<div class="mt-md-2 d-flex justify-content-around">
+					<div class="card me-md-2" style="width: 25rem;">
+						<div class="card-body border border-dark">
+							<h2>Retrait</h2>
+							<br>
+							<label for="rue">Rue</label> 
+							<input name="rue" type="text"> 
+							<br>
+							<label for="codepostal">Code Postal</label>
+							<input name="codepostal" type="text"> 
+							<br>
+							<label for="ville">Ville</label> 
+							<input name="ville" type="text">
+						</div>
+					</div>
+				</div>
+				<input class="mt-md-2" type="submit" value="Enregistrer">
+				<a class="mt-md-2" href="Accueil.jsp"><button>Anuller</button></a>
+			</form>
+			
+		</div>
 	</body>
 </html>
