@@ -13,7 +13,7 @@
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-light bg-info">
 				<a class="navbar-brand" href="<%=request.getContextPath()%>/Accueil"> 
-					<img src="#" alt="logo" width="30" height="30" alt="">
+					<img src="fragments/Logo.png" alt="logo">
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -68,22 +68,24 @@
 					<div class="card me-md-2" style="width: 25rem;">
 						<div class="card-body border border-dark">
 							<h2>Retrait</h2>
-							<br>
-							<label for="rue">Rue</label> 
-							<input name="rue" type="text"> 
-							<br>
-							<label for="codepostal">Code Postal</label>
-							<input name="codepostal" type="text"> 
-							<br>
-							<label for="ville">Ville</label> 
-							<input name="ville" type="text">
+							<div class="mt-md-2 d-flex justify-content-around">
+								<label for="rue">Rue : </label> 
+								<input name="rue" type="text"> 
+							</div>
+							<div class="mt-md-2 d-flex justify-content-around">
+								<label for="codepostal">Code Postal : </label>
+								<input name="codepostal" type="text"> 
+							</div>
+							<div class="mt-md-2 d-flex justify-content-around">
+								<label for="ville">Ville : </label> 
+								<input name="ville" type="text">
+							</div>
 						</div>
 					</div>
 				</div>
 				<input class="mt-md-2" type="submit" value="Enregistrer">
 				<a class="mt-md-2" href="Accueil.jsp"><button>Anuller</button></a>
 			</form>
-			
 		</div>
 	</body>
 </html>

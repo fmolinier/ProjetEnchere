@@ -58,7 +58,7 @@ public class ServletAfficherProfil extends HttpServlet {
 			request.setAttribute("ville", u.getVille());
 			request.setAttribute("motdepasse", u.getMotDePasse());
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Profil.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/monProfil.jsp");
 			rd.forward(request, response);
 			//si c'est le profil d'un autre utilisateur
 		}else if (request.getServletPath().equals("/Profil")){

@@ -14,17 +14,19 @@
 	<body>
 		<div class="text-center mt-md-2">
 			<h1>Connexion</h1>
-			<form action="<%=request.getContextPath()%>/connection" method="post">
-				<label for="identifiant">Identifiant : </label>
-				<input type="text" name="identifiant" id="identifiant" autofocus="autofocus">
-				<br>
-				<label class=" mt-md-2" for="motdepasse">Mot de passe : </label>
-				<input type="password" name="motdepasse" id="motdepasse" >
-				<br>
-				<input type="submit" value="connection">
-				<a href="<%=request.getContextPath()%>/inscription" ><button>Inscription</button></a>
-			</form>
 			
+			<form action="<%=request.getContextPath()%>/connection" method="post">
+				<div class="mt-md-2 d-flex justify-content-center">
+					<label for="identifiant">Identifiant : </label>
+					<input type="text" name="identifiant" id="identifiant" autofocus="autofocus">
+				</div>
+				<div class="mt-md-2 d-flex justify-content-center">
+					<label class=" mt-md-2" for="motdepasse">Mot de passe : </label>
+					<input type="password" name="motdepasse" id="motdepasse" >
+				</div>
+				<input class="mt-md-2" type="submit" value="connection">
+				<a class="mt-md-2" href="<%=request.getContextPath()%>/inscription" ><button>Inscription</button></a>
+			</form>
 			<c:if test="${alert != null}">
 				<p class="alert alert-warning" role="alert">${alert}</p>
 			</c:if>
