@@ -13,8 +13,7 @@
 	<%@ include file="./fragments/header.html" %>
 	<body>
 		<h1 class="text-center">Profil</h1>
-		<div class="text-center text-justify card-body ">
-			
+		<div class="text-center card-body ">
 			<div>
 				<p id="pseudo">Pseudo : <strong>${pseudo}</strong></p>
 			</div>

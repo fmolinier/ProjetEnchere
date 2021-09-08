@@ -62,7 +62,7 @@ public class ServletAfficherProfil extends HttpServlet {
 			rd.forward(request, response);
 			//si c'est le profil d'un autre utilisateur
 		}else if (request.getServletPath().equals("/Profil")){
-			String pseudo = request.getParameter("pseudoVendeur");
+			String pseudo = request.getParameter("pseudo");
 			u = b.afficherProfil(pseudo);
 			request.setAttribute("pseudo", u.getPseudo());
 			request.setAttribute("nom", u.getNom());

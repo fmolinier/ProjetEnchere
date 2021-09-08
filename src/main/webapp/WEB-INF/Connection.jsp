@@ -16,11 +16,11 @@
 			<h1>Connexion</h1>
 			
 			<form action="<%=request.getContextPath()%>/connection" method="post">
-				<div class="mt-md-2 d-flex justify-content-center">
+				<div class="mt-md-2 justify-content-around">
 					<label for="identifiant">Identifiant : </label>
 					<input type="text" name="identifiant" id="identifiant" autofocus="autofocus">
 				</div>
-				<div class="mt-md-2 d-flex justify-content-center">
+				<div class="mt-md-2 justify-content-around">
 					<label class=" mt-md-2" for="motdepasse">Mot de passe : </label>
 					<input type="password" name="motdepasse" id="motdepasse" >
 				</div>

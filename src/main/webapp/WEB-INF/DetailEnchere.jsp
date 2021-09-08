@@ -11,52 +11,61 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	</head>
 	<%@ include file="./fragments/header.html" %>
-	<body class="text-center">
-		<h1 class="mt-md-2">Detail vente</h1>
-		<div><h3 id="nomArticle">${nomArticle}</h3></div>
-		
-		<form  action="<%=request.getContextPath()%>/Encherir" method="post">
-		
-			<input name="numero" name="numero" type="hidden" value="${numeroArticle}">
-			<label for="description">Description : </label>
-			
-			<textarea name="description" disabled="disabled">${description}</textarea>
-			<p id="categorie">Categorie : ${categorie}</p>
-			
-			<c:if test="${enchere != 0}">
-				<p id="enchere">Meilleure offre : ${enchere} par 						
-					<a href='#' onclick='document.getElementById("pseudoEnchereur").submit()'>${pseudoenchere}</a>
-				</p>
-			</c:if>
-			
-			<p id="prix">Mise à prix : ${prix} </p>
-			<p id="fin">Fin de l'enchère : ${fin}</p>
-			
-			<div>
-				<h3>Retrait</h3>
-				<p id="rue">rue : ${rue}</p>
-				<p id="codepostal">Code postal : ${codepostal}</p>
-				<p id="ville">Ville : ${ville}</p>
-			</div>
-			
-			<p id="vendeur">						
-				Vendeur : <a href='#' onclick='document.getElementById("pseudoVendeur").submit()<%=request.getContextPath()%>/Profil'>${vendeur}</a>
-			</p>
-			
-			<c:if test="${!empty sessionScope.pseudo}">
-				<label for="proposition">Ma proposition : </label>
-				<input type="number" name="proposition">
-				<input type="submit" value="Enchérir">
-			</c:if>
-		</form>
-		<form id="pseudoEnchereur" action="<%=request.getContextPath()%>/Accueil">
-			<input type="submit" value="Accueil"/>
-		</form>
-		<form id="pseudoEnchereur" action="<%=request.getContextPath()%>/Profil">
-			<input type="hidden" name="pseudoEnchereur" value="${pseudoenchere}"/>
-		</form>
-		<form id="pseudoVendeur" action="<%=request.getContextPath()%>/Profil">
-			<input type="hidden" name="pseudoVendeur" value="${vendeur}"/>
-		</form>
+	<body>
+		<h1 class=" text-center mt-md-2">Detail vente</h1>
+		<h3 class="text-center mt-md-2" id="nomArticle"><b>${nomArticle}</b></h3>
+		<div class="mt-md-2 d-flex justify-content-around">
+			<form  action="<%=request.getContextPath()%>/Encherir" method="post">
+				<div class="mt-md-2 d-flex align-items-start">
+					<input name="numero" name="numero" type="hidden" value="${numeroArticle}">
+					<label for="description">Description : </label>
+					<textarea name="description" disabled="disabled" style="font-weight: bold">${description}</textarea>
+				</div>
+				<div class="mt-md-2 justify-content-around">
+					<p id="categorie">Categorie : <b>${categorie}</b></p>
+				</div>
+				<div class="mt-md-2 justify-content-around">
+					<c:if test="${enchere != 0}">
+						<p id="enchere">Meilleure offre : <b>${enchere}</b> par 						
+							<a href='<%=request.getContextPath()%>/Profil?pseudo=${pseudoenchere}'><b>${pseudoenchere}</b></a>
+						</p>
+					</c:if>
+				</div>
+				<div class="mt-md-2 justify-content-around">
+					<p id="prix">Mise à prix : <b>${prix}</b> </p>
+				</div>
+				<div class="mt-md-2 justify-content-around">
+					<p id="fin">Fin de l'enchère : <b>${fin}</b></p>
+				</div>
+				<div class="mt-md-2 justify-content-around">
+					<div class="card me-md-2" style="width: 25rem;">
+						<div class="card-body border border-dark">
+							<h3>Retrait</h3>
+							<div class="mt-md-2 justify-content-around">
+								<p id="rue">rue : <b>${rue}</b></p>
+							</div>
+							<div class="mt-md-2 justify-content-around">
+								<p id="codepostal">Code postal : <b>${codepostal}</b></p>
+							</div>
+							<div class="mt-md-2 justify-content-around">
+								<p id="ville">Ville : <b>${ville}</b></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mt-md-2 justify-content-around">
+					<p id="vendeur">						
+						Vendeur : <a href='<%=request.getContextPath()%>/Profil?pseudo=${vendeur}'><b>${vendeur}</b></a>
+					</p>
+				</div>
+				<div class="mt-md-2 justify-content-around">
+					<c:if test="${!empty sessionScope.pseudo}">
+						<label for="proposition">Ma proposition : </label>
+						<input type="number" name="proposition">
+						<input type="submit" value="Enchérir">
+					</c:if>
+				</div>
+			</form>
+		</div>
 	</body>
 </html>

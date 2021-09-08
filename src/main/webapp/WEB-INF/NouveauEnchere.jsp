@@ -13,7 +13,7 @@
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-light bg-info">
 				<a class="navbar-brand" href="<%=request.getContextPath()%>/Accueil"> 
-					<img src="fragments/Logo.png" alt="logo">
+					<img src="fragments/Logo.png" width="30" height="30" alt="logo">
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -34,15 +34,15 @@
 		<h1 class="text-center">Nouvelle Enchere</h1>
 		<div class="mt-md-2 d-flex justify-content-around">
 			<form action="<%=request.getContextPath()%>/NouvelleEnchere" method="post">
-				<div class="mt-md-2 d-flex justify-content-around">
+				<div class="mt-md-2 justify-content-around">
 					<label for="nom">nom : </label> 
 					<input name="nom" type="text"> 
 				</div>
-				<div class="mt-md-2 d-flex justify-content-around">
+				<div class="mt-md-2 d-flex align-items-start">
 					<label for="description">description : </label>
 					<textarea class="mt-md-2" name="description" rows="5" cols="33"></textarea>
 				</div>
-				<div class="mt-md-2 d-flex justify-content-around">
+				<div class="mt-md-2 justify-content-around">
 					<label for="categorie">catégorie : </label> 
 					<select name="categorie">
 						<option value="">--choisiessez une option--</option>
@@ -52,31 +52,31 @@
 						<option value="Sport & loisir">Sport/Loisir</option>
 					</select>
 				</div>
-				<div class="mt-md-2 d-flex justify-content-around">
+				<div class="mt-md-2 justify-content-around">
 					<label for="prix">Mise à prix : </label> 
 					<input name="prix" type="text">
 				</div>
-				<div class="mt-md-2 d-flex justify-content-around">
+				<div class="mt-md-2 justify-content-around">
 					<label for="debut">Date debut : </label> 
 					<input type="date" name="debut">
 				</div>
-				<div class="mt-md-2 d-flex justify-content-around">
+				<div class="mt-md-2 justify-content-around">
 					<label for="fin">Date fin : </label> 
 					<input type="date" name="fin">
 				</div>
-				<div class="mt-md-2 d-flex justify-content-around">
+				<div class="mt-md-2 justify-content-around">
 					<div class="card me-md-2" style="width: 25rem;">
 						<div class="card-body border border-dark">
 							<h2>Retrait</h2>
-							<div class="mt-md-2 d-flex justify-content-around">
+							<div class="mt-md-2 justify-content-around">
 								<label for="rue">Rue : </label> 
 								<input name="rue" type="text"> 
 							</div>
-							<div class="mt-md-2 d-flex justify-content-around">
+							<div class="mt-md-2 justify-content-around">
 								<label for="codepostal">Code Postal : </label>
 								<input name="codepostal" type="text"> 
 							</div>
-							<div class="mt-md-2 d-flex justify-content-around">
+							<div class="mt-md-2 justify-content-around">
 								<label for="ville">Ville : </label> 
 								<input name="ville" type="text">
 							</div>

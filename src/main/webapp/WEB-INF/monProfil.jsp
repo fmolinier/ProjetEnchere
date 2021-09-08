@@ -22,7 +22,7 @@
 		<div class="text-center text-justify mt-md-2 d-flex justify-content-around">
 			<form name="profil" action="<%=request.getContextPath()%>/modifier" method="post">
 				<div class="mt-md-2 d-flex justify-content-around">
-					<label for="pseudo">Pseudo</label>
+					<label for="pseudo">Pseudo : </label>
 					<input type="text" name="pseudo" autofocus="autofocus" value="${pseudo }">
 				</div>
 				<div class="mt-md-2 d-flex justify-content-around">
