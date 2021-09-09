@@ -24,8 +24,8 @@
 					<label class=" mt-md-2" for="motdepasse">Mot de passe : </label>
 					<input type="password" name="motdepasse" id="motdepasse" >
 				</div>
-				<input class="mt-md-2" type="submit" value="connection">
-				<a class="mt-md-2" href="<%=request.getContextPath()%>/inscription" ><button>Inscription</button></a>
+				<button class="mt-md-2 btn btn-outline-primary" type="submit" class="btn btn-outline-primary">Connection</button>
+				<a href="<%=request.getContextPath()%>/inscription" ><button class="mt-md-2 btn btn-outline-primary">Inscription</button></a>
 			</form>
 			<c:if test="${alert != null}">
 				<p class="alert alert-warning" role="alert">${alert}</p>

@@ -61,8 +61,16 @@
 				<div class="mt-md-2 justify-content-around">
 					<c:if test="${!empty sessionScope.pseudo}">
 						<label for="proposition">Ma proposition : </label>
-						<input type="number" name="proposition">
-						<input type="submit" value="Enchérir">
+						<c:choose>
+							<c:when test="${ enchere <= 0 }">
+								<input type="number" name="proposition" value="${prix}">
+							</c:when>
+							<c:when test="${ enchere > 0 }">
+								<input type="number" name="proposition" value="${enchere}">
+							</c:when>
+						</c:choose>
+						<input type="number" name="proposition" value="${enchere}">
+						<button type="submit" class="btn btn-outline-primary">Enchérir</button>
 					</c:if>
 				</div>
 			</form>

@@ -55,8 +55,8 @@
 					<label for="confirmation">Confirmation : </label>
 					<input type="password" name="confirmation">
 				</div>
-				<input class="mt-md-2" type ="submit" value="Enregister">
-				<a class="mt-md-2" href="<%=request.getContextPath()%>/Accueil"><button>Anuller</button></a>
+				<button class="mt-md-2 btn btn-outline-primary" type ="submit">Enregister</button>
+				<a href="<%=request.getContextPath()%>/Accueil"><button class="mt-md-2 btn btn-outline-primary">Anuller</button></a>
 			</form>
 		</div>
 		<c:if test="${alert != null}">

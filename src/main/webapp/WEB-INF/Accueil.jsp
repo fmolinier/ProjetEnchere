@@ -75,7 +75,7 @@
 								<p id="fin">Fin de l'enchère : ${article.dateFin}</p>
 								<p id="vendeur">Vendeur : <a href="<%=request.getContextPath()%>/Profil?pseudo=${article.vendeur.pseudo}">${article.vendeur.pseudo}</a></p>
 								<br>
-								<input type="submit" Value="Detail">
+								<input type="submit" class="btn btn-outline-primary" Value="Detail">
 							</form>
 						</div>
 					</div>
