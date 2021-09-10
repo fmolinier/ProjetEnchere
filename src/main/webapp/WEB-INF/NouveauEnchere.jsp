@@ -13,7 +13,7 @@
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-light bg-info">
 				<a class="navbar-brand" href="<%=request.getContextPath()%>/Accueil"> 
-					<img src="/image/logo.svg" class="img-responsive" alt="logo">
+					<img src="https://zupimages.net/up/21/36/uhju.jpg" class="ms-md-2 img-responsive" alt="logo"> Enchere
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -84,7 +84,7 @@
 					</div>
 				</div>
 				<button class="mt-md-2 btn btn-outline-primary" type="submit">Enregistrer</button>
-				<a class="mt-md-2" href="Accueil.jsp"><button class="btn btn-outline-primary" >Anuller</button></a>
+				<a href="Accueil.jsp"><button class="mt-md-2 btn btn-outline-primary" >Anuller</button></a>
 			</form>
 		</div>
 	</body>

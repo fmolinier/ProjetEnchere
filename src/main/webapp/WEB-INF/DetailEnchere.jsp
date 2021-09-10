@@ -12,7 +12,7 @@
 	</head>
 	<%@ include file="./fragments/header.html" %>
 	<body>
-		<h1 class=" text-center mt-md-2">Detail vente</h1>
+		<h1 class=" text-center mt-md-2">Détail vente</h1>
 		<h3 class="text-center mt-md-2" id="nomArticle"><b>${nomArticle}</b></h3>
 		<div class="mt-md-2 d-flex justify-content-around">
 			<form  action="<%=request.getContextPath()%>/Encherir" method="post">
@@ -61,15 +61,7 @@
 				<div class="mt-md-2 justify-content-around">
 					<c:if test="${!empty sessionScope.pseudo}">
 						<label for="proposition">Ma proposition : </label>
-						<c:choose>
-							<c:when test="${ enchere <= 0 }">
-								<input type="number" name="proposition" value="${prix}">
-							</c:when>
-							<c:when test="${ enchere > 0 }">
-								<input type="number" name="proposition" value="${enchere}">
-							</c:when>
-						</c:choose>
-						<input type="number" name="proposition" value="${enchere}">
+						<input type="number" name="proposition" value="<c:choose><c:when test="${ enchere <= 0 }">${prix}</c:when><c:when test="${ enchere > 0 }">${enchere}</c:when></c:choose>">
 						<button type="submit" class="btn btn-outline-primary">Enchérir</button>
 					</c:if>
 				</div>
