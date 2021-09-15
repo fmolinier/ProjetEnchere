@@ -38,9 +38,30 @@ public class ServletEncherir extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		FaireEnchereBLL fe = new FaireEnchereBLL();
-		fe.Encherir(Integer.parseInt(request.getParameter("numero")), Integer.parseInt(request.getParameter("proposition")), (String) session.getAttribute("pseudo"));
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");
-		rd.forward(request, response);
+		int proposition = Integer.parseInt(request.getParameter("proposition"));
+		int prix =  Integer.parseInt(request.getParameter("prix"));
+		int meilleure =  Integer.parseInt(request.getParameter("enchere"));
+		if (meilleure != 0) {
+			if (proposition > meilleure) {
+				fe.Encherir(Integer.parseInt(request.getParameter("numero")), Integer.parseInt(request.getParameter("proposition")), (String) session.getAttribute("pseudo"));
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");
+				rd.forward(request, response);
+			} else {
+				request.setAttribute("alert", "proposition trop basse");
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/DetailEnchere.jsp");
+				rd.forward(request, response);
+			}
+		} else {
+			if (proposition > prix) {
+				fe.Encherir(Integer.parseInt(request.getParameter("numero")), Integer.parseInt(request.getParameter("proposition")), (String) session.getAttribute("pseudo"));
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Accueil.jsp");
+				rd.forward(request, response);
+			} else {
+				request.setAttribute("alert", "proposition trop basse");
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/DetailEnchere.jsp");
+				rd.forward(request, response);
+			}
+		}
 	}
 
 }

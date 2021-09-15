@@ -13,7 +13,7 @@
 	<%@ include file="./fragments/header.html" %>
 	<body>
 		<h1 class=" text-center mt-md-2">Détail vente</h1>
-		<h3 class="text-center mt-md-2" id="nomArticle"><b>${nomArticle}</b></h3>
+		<h3 class="text-center mt-md-4" id="nomArticle"><b>${nomArticle}</b></h3>
 		<div class="mt-md-2 d-flex justify-content-around">
 			<form  action="<%=request.getContextPath()%>/Encherir" method="post">
 				<div class="mt-md-2 d-flex align-items-start">
@@ -66,6 +66,9 @@
 					</c:if>
 				</div>
 			</form>
+			<c:if test="${alert != null}">
+				<p class="alert alert-warning" role="alert">${alert}</p>
+			</c:if>
 		</div>
 	</body>
 </html>

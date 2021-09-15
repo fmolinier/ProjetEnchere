@@ -14,7 +14,6 @@
 	<body>
 		<div class="text-center mt-md-2">
 			<h1>Connexion</h1>
-			
 			<form action="<%=request.getContextPath()%>/connection" method="post">
 				<div class="mt-md-2 justify-content-around">
 					<label for="identifiant">Identifiant : </label>
