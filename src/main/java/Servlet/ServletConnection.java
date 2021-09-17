@@ -38,7 +38,7 @@ public class ServletConnection extends HttpServlet {
 		HttpSession session = request.getSession();
 		GestionUtilisateurBLL b = new GestionUtilisateurBLL();
 		Utilisateur u = new Utilisateur();
-		u = b.Connection(request.getParameter("identifiant"), request.getParameter("motdepasse"));
+		u = b.Connection(request.getParameter("identifiant"));
 		// Verification si l'utilisateur existe ou non
 		if (u.getPseudo() != null || u.getEmail() != null) {
 

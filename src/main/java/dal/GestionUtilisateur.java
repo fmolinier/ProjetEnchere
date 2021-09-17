@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import bo.Utilisateur;
 
 public interface GestionUtilisateur {
-	public Utilisateur connection(Utilisateur connection,String type,String motdepasse) throws SQLException;
+	public Utilisateur connection(Utilisateur connection,String type) throws SQLException;
 	public void inscription(Utilisateur utilisateur) throws SQLException;
 	public String verifPeusdo(String pseudo) throws SQLException;
 	public String verifEmail(String email) throws SQLException;

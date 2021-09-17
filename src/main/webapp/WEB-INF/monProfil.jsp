@@ -67,7 +67,7 @@
 				</div>
 				<div class="mt-md-2 d-flex justify-content-around">
 					<button class="mt-md-2 btn btn-outline-primary" type ="submit">Enregister</button>
-					<a class="mt-md-2" href="<%=request.getContextPath()%>/supprimer"><button class="btn btn-outline-primary">supprimer</button></a>
+					<a class="mt-md-2" href="<%=request.getContextPath()%>/supprimer"><button class="btn btn-outline-danger">supprimer</button></a>
 				</div>
 			</form>
 		</div>

@@ -18,11 +18,10 @@ public class GestionUtilisateurBLL {
 	}
 
 	// Methode gerant la connection d'un utilisateur
-	public Utilisateur Connection(String login, String motDePasse) {
+	public Utilisateur Connection(String login) {
 
 		Utilisateur utilisateur = new Utilisateur();
 		Utilisateur connection = new Utilisateur();
-		connection.setMotDePasse(motDePasse);
 
 		String type = null;
 		
@@ -36,7 +35,7 @@ public class GestionUtilisateurBLL {
 
 		// recuperation de l'utilisateur
 		try {
-			utilisateur = gestionUtilisateur.connection(connection, type, motDePasse);
+			utilisateur = gestionUtilisateur.connection(connection, type);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
