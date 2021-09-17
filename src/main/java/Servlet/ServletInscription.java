@@ -36,17 +36,16 @@ public class ServletInscription extends HttpServlet {
 
 		GestionUtilisateurBLL b = new GestionUtilisateurBLL();
 		Utilisateur u = new Utilisateur();
-		//TODO email en minuscule / mise en page css
+		String emailMinuscule = request.getParameter("email").toLowerCase();
 		// recuperation des information
 		u.setPseudo(request.getParameter("pseudo"));
 		u.setNom(request.getParameter("nom"));
 		u.setPrenom(request.getParameter("prenom"));
-		u.setEmail(request.getParameter("email"));
+		u.setEmail(emailMinuscule);
 		u.setTelephone(request.getParameter("telephone"));
 		u.setRue(request.getParameter("rue"));
 		u.setCodePostal(Integer.parseInt(request.getParameter("codepostal")));
 		u.setVille(request.getParameter("ville"));
-		
 		boolean pseudo = b.verifPseudo(request.getParameter("pseudo"));
 		boolean email = b.verifEmail(request.getParameter("email"));
 		if (email && pseudo) {		
@@ -54,9 +53,7 @@ public class ServletInscription extends HttpServlet {
 			// mot de passe
 			String MotDePasse = request.getParameter("motdepasse");
 			String confirmation = request.getParameter("confirmation");
-			
 			if (MotDePasse.equals(confirmation)) {
-				
 				u.setMotDePasse(MotDePasse);
 				b.InscriptionUtilisateur(u);
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Connection.jsp");
