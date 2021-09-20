@@ -3,6 +3,9 @@ package Servlet;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import bll.GestionEnchereBLL;
@@ -51,14 +54,13 @@ public class ServletNouvelleEnchere extends HttpServlet {
 		a.setNomArticle(request.getParameter("nom"));
 		a.setDescription(request.getParameter("description"));
 		a.setMiseAPrix(Integer.parseInt(request.getParameter("prix")));
-		Date debut = null;
-		Date fin = null;
-		try {
-			debut = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("debut"));
-			fin = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("fin"));
-		} catch (ParseException e1) {
-			e1.printStackTrace();
-		}
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		String s = request.getParameter("debut");
+		System.out.println(s);
+		LocalDate localdebut =  LocalDate.parse(request.getParameter("debut"), formatter);
+		Date debut = Date.from(localdebut.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		LocalDate localfin =  LocalDate.parse(request.getParameter("fin"), formatter);
+		Date fin = Date.from(localfin.atStartOfDay(ZoneId.systemDefault()).toInstant());;
 		
 		a.setDateDebut(debut);
 		a.setDateFin(fin);
