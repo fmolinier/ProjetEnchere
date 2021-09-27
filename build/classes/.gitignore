@@ -1,3 +1,5 @@
-/dal/
 /Servlet/
 /bll/
+/bo/
+/connectionBDD/
+/dal/
