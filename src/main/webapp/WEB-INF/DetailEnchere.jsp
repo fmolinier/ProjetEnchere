@@ -26,13 +26,13 @@
 				</div>
 				<div class="mt-md-2 justify-content-around">
 					<c:if test="${enchere != 0}">
-						<p id="enchere">Meilleure offre : <b>${enchere}</b> par 						
+						<p id="enchere">Meilleure offre : <b>${enchere}</b> pts par 						
 							<a href='<%=request.getContextPath()%>/Profil?pseudo=${pseudoenchere}'><b>${pseudoenchere}</b></a>
 						</p>
 					</c:if>
 				</div>
 				<div class="mt-md-2 justify-content-around">
-					<p id="prix">Mise à prix : <b>${prix}</b> </p>
+					<p id="prix">Mise à prix : <b>${prix}</b> pts</p>
 				</div>
 				<div class="mt-md-2 justify-content-around">
 					<p id="fin">Fin de l'enchère : <b>${fin}</b></p>

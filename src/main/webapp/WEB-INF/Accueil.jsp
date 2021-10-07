@@ -71,7 +71,7 @@
 							<form action="<%=request.getContextPath()%>/Detail" method="post">
 								<input id="numero" name="numero" type="hidden" value="${article.noArticle }">
 								<h4 class="card-title" id="nom">${article.nomArticle}</h4>
-								<p id="prix">Prix : ${article.miseAPrix}</p>
+								<p id="prix">Prix : ${article.miseAPrix} pts</p>
 								<p id="fin">Fin de l'enchère : ${article.dateFin}</p>
 								<p id="vendeur">Vendeur : <a href="<%=request.getContextPath()%>/Profil?pseudo=${article.vendeur.pseudo}">${article.vendeur.pseudo}</a></p>
 								<br>
